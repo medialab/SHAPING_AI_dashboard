@@ -1,0 +1,101 @@
+date_year,Topic,count
+2011,"robot, machine, humain, homme, monde",94
+2011,"groupe, france, marche, entreprises, fonds, start, euros, millions",51
+2011,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",55
+2011,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",2
+2011,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",87
+2011,"annee, directeur, president, projet, jean, ans, paris, france",110
+2011,"eur, algorithme, ans, video, jeu",49
+2011,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",58
+2011,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",33
+2011,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",64
+2012,"robot, machine, humain, homme, monde",139
+2012,"groupe, france, marche, entreprises, fonds, start, euros, millions",70
+2012,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",46
+2012,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",8
+2012,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",70
+2012,"annee, directeur, president, projet, jean, ans, paris, france",147
+2012,"eur, algorithme, ans, video, jeu",103
+2012,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",51
+2012,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",24
+2012,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",116
+2013,"robot, machine, humain, homme, monde",137
+2013,"groupe, france, marche, entreprises, fonds, start, euros, millions",53
+2013,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",96
+2013,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",6
+2013,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",54
+2013,"annee, directeur, president, projet, jean, ans, paris, france",114
+2013,"eur, algorithme, ans, video, jeu",72
+2013,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",55
+2013,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",39
+2013,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",134
+2014,"robot, machine, humain, homme, monde",303
+2014,"groupe, france, marche, entreprises, fonds, start, euros, millions",70
+2014,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",154
+2014,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",27
+2014,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",70
+2014,"annee, directeur, president, projet, jean, ans, paris, france",134
+2014,"eur, algorithme, ans, video, jeu",111
+2014,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",79
+2014,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",53
+2014,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",156
+2015,"robot, machine, humain, homme, monde",545
+2015,"groupe, france, marche, entreprises, fonds, start, euros, millions",144
+2015,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",216
+2015,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",23
+2015,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",140
+2015,"annee, directeur, president, projet, jean, ans, paris, france",216
+2015,"eur, algorithme, ans, video, jeu",120
+2015,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",237
+2015,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",109
+2015,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",289
+2016,"robot, machine, humain, homme, monde",871
+2016,"groupe, france, marche, entreprises, fonds, start, euros, millions",370
+2016,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",616
+2016,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",77
+2016,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",266
+2016,"annee, directeur, president, projet, jean, ans, paris, france",317
+2016,"eur, algorithme, ans, video, jeu",308
+2016,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",514
+2016,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",148
+2016,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",507
+2017,"robot, machine, humain, homme, monde",1395
+2017,"groupe, france, marche, entreprises, fonds, start, euros, millions",1104
+2017,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",1134
+2017,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",213
+2017,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",378
+2017,"annee, directeur, president, projet, jean, ans, paris, france",677
+2017,"eur, algorithme, ans, video, jeu",276
+2017,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",638
+2017,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",487
+2017,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",856
+2018,"robot, machine, humain, homme, monde",1663
+2018,"groupe, france, marche, entreprises, fonds, start, euros, millions",2011
+2018,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",1439
+2018,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",467
+2018,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",661
+2018,"annee, directeur, president, projet, jean, ans, paris, france",1495
+2018,"eur, algorithme, ans, video, jeu",377
+2018,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",799
+2018,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",974
+2018,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",1310
+2019,"robot, machine, humain, homme, monde",1736
+2019,"groupe, france, marche, entreprises, fonds, start, euros, millions",1879
+2019,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",1492
+2019,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",497
+2019,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",701
+2019,"annee, directeur, president, projet, jean, ans, paris, france",1413
+2019,"eur, algorithme, ans, video, jeu",421
+2019,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",605
+2019,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",998
+2019,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",1526
+2020,"robot, machine, humain, homme, monde",871
+2020,"groupe, france, marche, entreprises, fonds, start, euros, millions",1623
+2020,"experience, produits, application, marketing, temps, service, site, donnees, client, clients",987
+2020,"emplois, numerique, formation, competences, emploi, data, metiers, entreprise, travail, entreprises",286
+2020,"medecine, patient, donnees, chercheurs, eleves, universite, algorithme, recherche, patients, sante",682
+2020,"annee, directeur, president, projet, jean, ans, paris, france",696
+2020,"eur, algorithme, ans, video, jeu",633
+2020,"unis, dollars, apple, microsoft, recherche, amazon, facebook, google",297
+2020,"pays, faire, securite, rapport, france, politique, loi, numerique, droit, donnees",749
+2020,"technologie, apprentissage, temps, systemes, learning, machine, systeme, donnees",1389
