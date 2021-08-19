@@ -6,6 +6,7 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import plotly as py
 import plotly.graph_objs as go
+from plotly.offline import plot
 import random
 
 st.title("SHAPING AI MEDIA DASHBOARD")
@@ -37,6 +38,9 @@ def draw_dist():
 st.title('Articles distribution over time')
 st.plotly_chart(draw_dist())
 
+st.title('Main Media actors')
+#st.plotly_chart(draw_media())
+
 #------------------------Module 2--------------------------
 DATA2 = ('topics.csv')
 DATE_COLUMN2 = 'date_year'
@@ -61,18 +65,18 @@ def swc(df,v1,v2):
     return show_word_cloud(df,v1,v2)
 
 option_1_s = st.selectbox('',[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020])
-    st.subheader('Choose Topic')
-    option_2_s = st.selectbox('',['Topic 1','Topic 2','Topic 3','Topic 4','Topic 5','Topic 6','Topic 7','Topic 8','Topic 9','Topic 10'])
-    st.subheader("Number of results")
-    option_3_s = st.slider("",5,50)
-    st.subheader('Wordcloud')
-    wc = swc(df2, option_1_s.value, option_2_s.value)
-    fig = plt.figure(figsize=(8, 8))
-    plt.imshow(wc, interpolation="bilinear")
-    plt.axis('off')
-    plt.title(select_box2.value, fontsize=18)
-    plt.tight_layout()
-    st.pyplot(fig)
+st.subheader('Choose Topic')
+option_2_s = st.selectbox('',['Topic 1','Topic 2','Topic 3','Topic 4','Topic 5','Topic 6','Topic 7','Topic 8','Topic 9','Topic 10'])
+st.subheader("Number of results")
+option_3_s = st.slider("",5,50)
+st.subheader('Wordcloud')
+wc = swc(df2, option_1_s.value, option_2_s.value)
+fig = plt.figure(figsize=(8, 8))
+plt.imshow(wc, interpolation="bilinear")
+plt.axis('off')
+plt.title(select_box2.value, fontsize=18)
+plt.tight_layout()
+st.pyplot(fig)
 
 
 
