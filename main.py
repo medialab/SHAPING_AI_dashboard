@@ -29,7 +29,7 @@ DATE_COLUMN1 = 'date'
 df1 = pd.read_csv(DATA1, parse_dates=[DATE_COLUMN1])
 
 def draw_dist():
-    fig = px.histogram(df1, x='date', y='count', template='plotly_white', range_x=['2011','2020'],width = 900, height = 500)
+    fig = px.histogram(df1, x='date', y='count', template='plotly_white', range_x=['2011','2020'],width = 700, height = 400)
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Articles Count')
     fig.update_traces(xbins_size="M1")
