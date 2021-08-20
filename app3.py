@@ -8,7 +8,10 @@ import plotly as py
 import plotly.graph_objs as go
 from plotly.offline import plot
 import random
-from PIL import Image
+
+def app():
+    st.title('APP2')
+    st.write('Welcome to app2')
 
 st.set_page_config(
     # Can be "centered" or "wide". In the future also "dashboard", etc.
@@ -19,13 +22,10 @@ st.set_page_config(
     page_icon=None,  # String, anything supported by st.image, or None.
 )
 
-
 st.title("SHAPING AI MEDIA DASHBOARD")
 st.write("""This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.""")
 
-image = Image.open('logo_medialab.png')
 #Titles and Mode selections
-st.sidebar.image(image)
 st.sidebar.title("About")
 st.sidebar.info(
     """
@@ -34,8 +34,6 @@ st.sidebar.info(
 )
 st.sidebar.info("Feel free to collaborate and comment on the work. The github link can be found "
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
-st.sidebar.title("Navigate")
-st.sidebar.radio("", ["Articles and media", "Topics", "Network"])
 
 #------------------------Module 1--------------------------
 
