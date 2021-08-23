@@ -13,12 +13,11 @@ pip install -r requirements.txt
 
 ## Data 
 
-<code>dist_month.csv</code>: 
+<code>dist_articles.csv</code>: distribution of the articles over 10 years period
 
-<code>dist_media</code>: 
+<code>dist_media</code>: distribution of the media and published articles
 
-<code>dist_topics</code>: 
-
+<code>dist_topics</code>: distribution of the topics and their key-words over 10 years period
 
 ## Launching the App
 
