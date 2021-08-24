@@ -37,6 +37,9 @@ st.sidebar.info("Feel free to collaborate and comment on the work. The github li
 st.sidebar.title("Navigate")
 st.sidebar.radio("", ["Articles and media", "Topics", "Network"])
 
+st.sidebar.info("Author of the project"
+                "[https://iconduck.com/emojis/43731/linkedin](https://www.linkedin.com/in/yuliia-nikolaenko/).")
+
 #------------------------Module 1--------------------------
 DATA1 = ('dist_month.csv')
 DATE_COLUMN1 = 'date'
