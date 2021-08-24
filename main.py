@@ -40,8 +40,12 @@ st.sidebar.radio("", ["Articles and media", "Topics", "Network"])
 st.sidebar.info("Author of the project"
                 "[https://iconduck.com/emojis/43731/linkedin](https://www.linkedin.com/in/yuliia-nikolaenko/).")
 
+
+st.sidebar.info("Author of the project"
+                "[https://iconduck.com/emojis/43731/linkedin](https://www.linkedin.com/in/yuliia-nikolaenko/).")
+
 #------------------------Module 1--------------------------
-DATA1 = ('dist_month.csv')
+DATA1 = ('dist_articles.csv')
 DATE_COLUMN1 = 'date'
 df1 = pd.read_csv(DATA1, parse_dates=[DATE_COLUMN1])
 
@@ -55,7 +59,7 @@ def draw_dist():
 st.title('Articles distribution over time')
 st.plotly_chart(draw_dist())
 
-dist_media_df = pd.read_csv('dist_media50.csv')
+dist_media_df = pd.read_csv('dist_media.csv')
 
 def draw_media(data):
     fig = px.histogram(data, x='count', y='index', template='plotly_white', width = 700, height = 500)
@@ -71,7 +75,7 @@ data= dist_media_df[:num]
 st.plotly_chart(draw_media(data))
 
 #------------------------Module 2--------------------------
-DATA2 = ('topics.csv')
+DATA2 = ('dist_topics.csv')
 DATE_COLUMN2 = 'date_year'
 df2 = pd.read_csv(DATA2, parse_dates=[DATE_COLUMN2])
 st.title("Top words discussed in each topic")
