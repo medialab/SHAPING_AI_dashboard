@@ -73,7 +73,7 @@ st.plotly_chart(draw_media(data))
 #------------------------Module 2--------------------------
 lda_model = joblib.load('lda_model.jl')
 vocab = joblib.load('vocab.jl')
-def draw_word_cloud(index):
+def draw_word_cloud(index, maxwords):
   imp_words_topic=""
   comp=lda_model.components_[index]
   vocab_comp = zip(vocab, comp)
@@ -81,13 +81,14 @@ def draw_word_cloud(index):
   for word in sorted_words:
     imp_words_topic=imp_words_topic+" "+word[0]
 
-  wordcloud = WordCloud(width=2000, height=2000,background_color="white",
-                       contour_width=3, contour_color="white").generate(imp_words_topic)
-  plt.figure(figsize=(10,10))
+  wordcloud = WordCloud(width = 1000, height = 500, background_color="white",
+                       contour_width=3, contour_color="white", max_words=maxwords).generate(imp_words_topic)
+  fig = plt.figure(figsize=(10,10))
   plt.imshow(wordcloud)
   plt.axis("off")
   plt.tight_layout()
   plt.show()
+  return fig
 
 
 #DATA2 = ('dist_topics.csv')
@@ -97,8 +98,9 @@ st.title("Top words discussed in each topic")
 #st.subheader('Choose Year')
 #option_1_s = st.selectbox('',[2011,2012,2013,2014,2015,2016,2017,2018,2019,2020])
 st.subheader('Choose Topic')
-option_2_s = st.slider('Topic',0,9)
+option_2_s = st.selectbox('Topic', [0,1,2,3,4,5,6,7,8,9])
 st.subheader("Number of results")
 option_3_s = st.slider("",5,50)
 st.subheader('Wordcloud')
-st.image(draw_word_cloud(option_2_s))
+fig = draw_word_cloud(option_2_s, option_3_s )
+st.pyplot(fig)
