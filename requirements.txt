@@ -4,3 +4,4 @@ plotly==4.14.3
 matplotlib
 wordcloud
 joblib
+scikit-learn

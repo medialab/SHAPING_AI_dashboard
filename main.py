@@ -9,7 +9,9 @@ import plotly.graph_objs as go
 from plotly.offline import plot
 import random
 from PIL import Image
+import sklearn
 import joblib
+
 
 ## PAGE CONFIGURATION AND TITLE ##
 st.set_page_config(
@@ -72,7 +74,6 @@ def draw_word_cloud(index, maxwords):
   sorted_words = sorted(vocab_comp, key= lambda x:x[1], reverse=True)[:50]
   for word in sorted_words:
     imp_words_topic=imp_words_topic+" "+word[0]
-
   wordcloud = WordCloud(width = 1000, height = 500, background_color="white",
                        contour_width=3, contour_color="white", max_words=maxwords).generate(imp_words_topic)
   fig = plt.figure(figsize=(10,10))
