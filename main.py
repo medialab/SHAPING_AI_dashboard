@@ -34,7 +34,6 @@ st.sidebar.info(
 )
 st.sidebar.info("Feel free to collaborate and comment on the work. The github link can be found "
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
-st.sidebar.info("Author of the project [Linkedin](https://www.linkedin.com/in/yuliia-nikolaenko/)")
 
 ## MODULE ARTICLES ##
 DATA1 = ('dist_articles.csv')
@@ -95,4 +94,4 @@ st.pyplot(fig)
 ## MODULE NETWORK ##
 network = Image.open('terms_network.jpg')
 st.title("Terms Network")
-st.image(network)
+st.image(network, width= None)
