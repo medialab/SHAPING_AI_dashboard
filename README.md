@@ -17,7 +17,9 @@ pip install -r requirements.txt
 
 <code>dist_media</code>: distribution of the media and published articles
 
-<code>dist_topics</code>: distribution of the topics and their key-words over 10 years period
+<code>lda_model.jl</code>: LDA model
+
+<code>vocab.jl</code>: corpus vocabulary 
 
 ## Launching the App
 
