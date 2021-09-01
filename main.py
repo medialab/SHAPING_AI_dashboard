@@ -94,11 +94,15 @@ st.pyplot(fig)
 
 ## MODULE NETWORK ##
 st.title("Terms Network")
+
+# bootstrap 4 collapse example
 components.html(
     """
 <iframe allowfullscreen
-  style="border: none; width: 900px; height: 500px"
-  src="https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2FBUNDLE%2520-%2520Network.json&color=cluster_label&lockNavigation=true&name=shaping+ai&ratio=0.39383627763077544&showLink=true&size=&x=0.33220484899598585&y=0.7222097970303125">
+  style="border: none; width: 500px; height: 300px"
+  src="https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2FBUNDLE%2520-%2520Network.json&color=cluster_label&lockNavigation=true&name=&ratio=0.6695216719723183&showLink=true&size=&x=0.25109047685988944&y=0.7011706202650629">
   allow-popups
 </iframe>
-""")
+    """,
+    height=600,
+)
