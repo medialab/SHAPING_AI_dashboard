@@ -83,34 +83,19 @@ def draw_word_cloud(index, maxwords):
   plt.show()
   return fig
 
-def draw_topics():
-    fig = px.histogram(data, x='count', y='index', template='plotly_white', width = 700, height = 500)
-    fig.update_xaxes(title_text='Number of articles published from 2011 to 2021')
-    fig.update_yaxes(title_text='Media')
-    fig.update_traces(xbins_size="M1")
-    return fig
 
 st.title("Top words discussed in each topic")
 st.subheader('Choose Topic')
 option_2_s = st.selectbox('Topic', [0,1,2,3,4,5,6,7,8,9])
 st.subheader("Number of results")
 option_3_s = st.slider("",5,50)
-st.plotly_chart(draw_topics())
+#st.plotly_chart(draw_topics(option_3_s))
 st.subheader('Wordcloud')
-fig = draw_word_cloud(option_2_s, option_3_s )
+fig = draw_word_cloud(option_2_s, option_3_s)
 st.pyplot(fig)
 
 ## MODULE NETWORK ##
 st.title("Terms Network")
 
 # bootstrap 4 collapse example
-components.html(
-    """
-<iframe allowfullscreen
-  style="border: none; width: 500px; height: 300px"
-  src="https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2FBUNDLE%2520-%2520Network.json&color=cluster_label&lockNavigation=true&name=&ratio=0.6695216719723183&showLink=true&size=&x=0.25109047685988944&y=0.7011706202650629">
-  allow-popups
-</iframe>
-    """,
-    height=600,
-)
+components.iframe('https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2FBUNDLE%2520-%2520Network.json&color=cluster_label&lockNavigation=false&name=&ratio=0.3938362776307754&showLink=true&size=weight&x=0.24217124351354555&y=0.7196318289784678')
