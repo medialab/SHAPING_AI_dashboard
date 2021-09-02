@@ -97,4 +97,4 @@ st.pyplot(fig)
 ## MODULE NETWORK ##
 st.title("Terms Network")
 
-components.iframe('https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2FBUNDLE%2520-%2520Network.json&color=cluster_label&lockNavigation=false&name=&ratio=0.7904075294117647&showLink=true&size=weight&x=0.5596849487946193&y=0.3357065808546196', width=800, height=500)
+components.iframe('https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2FBUNDLE%2520-%2520Shaping%2520AI%2520Network.json&color=cluster_label&lockNavigation=true&name=&ratio=1.3436928&showLink=true&size=weight&x=0.5308020842190102&y=0.3783239544591892', width=800, height=500)
