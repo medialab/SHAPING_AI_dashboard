@@ -83,10 +83,11 @@ if choice == 'Home':
     st.info('This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.')
 elif choice == 'Articles':
     st.title('Articles distribution over time')
-    st.info('')
+    st.info('The plot represents the distribution of the articles published by all media sources for 10 years period: from January 2011 to December 2020.')
     st.plotly_chart(draw_dist())
 elif choice == 'Media':
     st.title('Main Media actors')
+    st.info('Choose the number of the media you would like to display.')
     st.subheader("Number of results")
     num = st.slider("", 5, 20)
     data = dist_media_df[:num]
