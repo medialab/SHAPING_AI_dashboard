@@ -87,7 +87,7 @@ elif choice == 'Articles':
     st.plotly_chart(draw_dist())
 elif choice == 'Media':
     st.title('Main Media actors')
-    st.info('Choose the number of the media you would like to display.')
+    st.info('Choose the number of media sources you would like to display.')
     st.subheader("Number of results")
     num = st.slider("", 5, 20)
     data = dist_media_df[:num]
@@ -97,13 +97,30 @@ elif choice == 'Topics':
     st.info(
         'Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Gensim open-source Python library for unsupervised topic modeling and natural language processing. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
     st.subheader('Choose Topic')
-    option_2_s = st.selectbox('Topic', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
     st.subheader("Number of results")
     option_3_s = st.slider("", 5, 50)
-    # st.plotly_chart(draw_topics(option_3_s))
     st.subheader('Wordcloud')
-    fig = draw_word_cloud(option_2_s, option_3_s)
-    st.pyplot(fig)
+    if option_2_s == '1':
+        st.pyplot(draw_word_cloud(0, option_3_s))
+    elif option_2_s == '2':
+        st.pyplot(draw_word_cloud(1, option_3_s))
+    elif option_2_s == '3':
+        st.pyplot(draw_word_cloud(2, option_3_s))
+    elif option_2_s == '4':
+        st.pyplot(draw_word_cloud(3, option_3_s))
+    elif option_2_s == '5':
+        st.pyplot(draw_word_cloud(4, option_3_s))
+    elif option_2_s == '6':
+        st.pyplot(draw_word_cloud(5, option_3_s))
+    elif option_2_s == '7':
+        st.pyplot(draw_word_cloud(6, option_3_s))
+    elif option_2_s == '8':
+        st.pyplot(draw_word_cloud(7, option_3_s))
+    elif option_2_s == '9':
+        st.pyplot(draw_word_cloud(8, option_3_s))
+    elif option_2_s == '10':
+        st.pyplot(draw_word_cloud(9, option_3_s))
 elif choice == 'Network':
     st.title("Terms Network")
     st.info(
