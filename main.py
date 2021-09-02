@@ -83,11 +83,19 @@ def draw_word_cloud(index, maxwords):
   plt.show()
   return fig
 
+def draw_topics():
+    fig = px.histogram(data, x='count', y='index', template='plotly_white', width = 700, height = 500)
+    fig.update_xaxes(title_text='Number of articles published from 2011 to 2021')
+    fig.update_yaxes(title_text='Media')
+    fig.update_traces(xbins_size="M1")
+    return fig
+
 st.title("Top words discussed in each topic")
 st.subheader('Choose Topic')
 option_2_s = st.selectbox('Topic', [0,1,2,3,4,5,6,7,8,9])
 st.subheader("Number of results")
 option_3_s = st.slider("",5,50)
+st.plotly_chart(draw_topics())
 st.subheader('Wordcloud')
 fig = draw_word_cloud(option_2_s, option_3_s )
 st.pyplot(fig)
