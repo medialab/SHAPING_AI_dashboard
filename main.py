@@ -74,15 +74,15 @@ def draw_word_cloud(index, maxwords):
   plt.show()
   return fig
 
+
 def draw_topics(index, num):
     comp = lda_model.components_[index]
     vocab_comp = zip(vocab, comp)
-    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:50]
+    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:num]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
-    fig1 = px.histogram(df[:num], x='weight', y='words', template='plotly_white', width = 700, height = 500)
+    fig1 = px.histogram(df, x='weight', y='words', template='plotly_white', width = 700, height = 500)
     fig1.update_xaxes(title_text='Keyword weight')
     fig1.update_yaxes(title_text='Topic Keywords')
-    plt.show()
     return fig1
 
 ## MODULE CHOICE ##
@@ -111,26 +111,35 @@ elif choice == 'Topics':
     option_3_s = st.slider("", 5, 50)
     st.subheader('Wordcloud')
     if option_2_s == '1':
-        st.pyplot(draw_word_cloud(0, option_3_s))
-        st.pyplot(draw_topics(0, option_3_s))
+        #st.pyplot(draw_word_cloud(0, option_3_s))
+        st.plotly_chart(draw_topics(0, option_3_s))
     elif option_2_s == '2':
-        st.pyplot(draw_word_cloud(1, option_3_s))
+        #st.pyplot(draw_word_cloud(1, option_3_s))
+        st.plotly_chart(draw_topics(1, option_3_s))
     elif option_2_s == '3':
-        st.pyplot(draw_word_cloud(2, option_3_s))
+        #st.pyplot(draw_word_cloud(2, option_3_s))
+        st.plotly_chart(draw_topics(2, option_3_s))
     elif option_2_s == '4':
-        st.pyplot(draw_word_cloud(3, option_3_s))
+        #st.pyplot(draw_word_cloud(3, option_3_s))
+        st.plotly_chart(draw_topics(3, option_3_s))
     elif option_2_s == '5':
-        st.pyplot(draw_word_cloud(4, option_3_s))
+        #st.pyplot(draw_word_cloud(4, option_3_s))
+        st.plotly_chart(draw_topics(4, option_3_s))
     elif option_2_s == '6':
-        st.pyplot(draw_word_cloud(5, option_3_s))
+        #st.pyplot(draw_word_cloud(5, option_3_s))
+        st.plotly_chart(draw_topics(5, option_3_s))
     elif option_2_s == '7':
-        st.pyplot(draw_word_cloud(6, option_3_s))
+        #st.pyplot(draw_word_cloud(6, option_3_s))
+        st.plotly_chart(draw_topics(6, option_3_s))
     elif option_2_s == '8':
-        st.pyplot(draw_word_cloud(7, option_3_s))
+        #st.pyplot(draw_word_cloud(7, option_3_s))
+        st.plotly_chart(draw_topics(7, option_3_s))
     elif option_2_s == '9':
-        st.pyplot(draw_word_cloud(8, option_3_s))
+        #st.pyplot(draw_word_cloud(8, option_3_s))
+        st.plotly_chart(draw_topics(8, option_3_s))
     elif option_2_s == '10':
-        st.pyplot(draw_word_cloud(9, option_3_s))
+        #st.pyplot(draw_word_cloud(9, option_3_s))
+        st.plotly_chart(draw_topics(9, option_3_s))
 elif choice == 'Network':
     st.title("Terms Network")
     st.info(
