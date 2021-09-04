@@ -38,11 +38,9 @@ st.sidebar.info("Feel free to collaborate and comment on the work. The github li
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
 
 ## MODULE ARTICLES ##
-DATA1 = ('dist_articles.csv')
-DATE_COLUMN1 = 'date'
-df1 = pd.read_csv(DATA1, parse_dates=[DATE_COLUMN1])
+dist_articles_df = pd.read_csv('dist_articles.csv', parse_dates=['date'])
 def draw_dist():
-    fig = px.histogram(df1, x='date', y='count', template='plotly_white', range_x=['2011','2021'],width = 800, height = 500)
+    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', range_x=['2011','2021'],width = 800, height = 500)
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Articles Count')
     fig.update_traces(xbins_size="M1")
@@ -76,6 +74,17 @@ def draw_word_cloud(index, maxwords):
   plt.show()
   return fig
 
+
+def draw_topics(index, num):
+    comp = lda_model.components_[index]
+    vocab_comp = zip(vocab, comp)
+    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:num]
+    df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
+    fig1 = px.histogram(df, x='weight', y='words', template='plotly_white', width = 700, height = 500)
+    fig1.update_xaxes(title_text='Term frequency')
+    fig1.update_yaxes(title_text='Topic Keywords')
+    return fig1
+
 ## MODULE CHOICE ##
 if choice == 'Home':
     st.title("SHAPING AI MEDIA DASHBOARD")
@@ -102,25 +111,35 @@ elif choice == 'Topics':
     option_3_s = st.slider("", 5, 50)
     st.subheader('Wordcloud')
     if option_2_s == '1':
-        st.pyplot(draw_word_cloud(0, option_3_s))
+        #st.pyplot(draw_word_cloud(0, option_3_s))
+        st.plotly_chart(draw_topics(0, option_3_s))
     elif option_2_s == '2':
-        st.pyplot(draw_word_cloud(1, option_3_s))
+        #st.pyplot(draw_word_cloud(1, option_3_s))
+        st.plotly_chart(draw_topics(1, option_3_s))
     elif option_2_s == '3':
-        st.pyplot(draw_word_cloud(2, option_3_s))
+        #st.pyplot(draw_word_cloud(2, option_3_s))
+        st.plotly_chart(draw_topics(2, option_3_s))
     elif option_2_s == '4':
-        st.pyplot(draw_word_cloud(3, option_3_s))
+        #st.pyplot(draw_word_cloud(3, option_3_s))
+        st.plotly_chart(draw_topics(3, option_3_s))
     elif option_2_s == '5':
-        st.pyplot(draw_word_cloud(4, option_3_s))
+        #st.pyplot(draw_word_cloud(4, option_3_s))
+        st.plotly_chart(draw_topics(4, option_3_s))
     elif option_2_s == '6':
-        st.pyplot(draw_word_cloud(5, option_3_s))
+        #st.pyplot(draw_word_cloud(5, option_3_s))
+        st.plotly_chart(draw_topics(5, option_3_s))
     elif option_2_s == '7':
-        st.pyplot(draw_word_cloud(6, option_3_s))
+        #st.pyplot(draw_word_cloud(6, option_3_s))
+        st.plotly_chart(draw_topics(6, option_3_s))
     elif option_2_s == '8':
-        st.pyplot(draw_word_cloud(7, option_3_s))
+        #st.pyplot(draw_word_cloud(7, option_3_s))
+        st.plotly_chart(draw_topics(7, option_3_s))
     elif option_2_s == '9':
-        st.pyplot(draw_word_cloud(8, option_3_s))
+        #st.pyplot(draw_word_cloud(8, option_3_s))
+        st.plotly_chart(draw_topics(8, option_3_s))
     elif option_2_s == '10':
-        st.pyplot(draw_word_cloud(9, option_3_s))
+        #st.pyplot(draw_word_cloud(9, option_3_s))
+        st.plotly_chart(draw_topics(9, option_3_s))
 elif choice == 'Network':
     st.title("Terms Network")
     st.info(
