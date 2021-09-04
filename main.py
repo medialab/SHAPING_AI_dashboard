@@ -109,7 +109,7 @@ elif choice == 'Topics':
     option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
     st.subheader("Number of results")
     option_3_s = st.slider("", 5, 50)
-    st.subheader('Wordcloud')
+    st.subheader('Topic keywords')
     if option_2_s == '1':
         #st.pyplot(draw_word_cloud(0, option_3_s))
         st.plotly_chart(draw_topics(0, option_3_s))
