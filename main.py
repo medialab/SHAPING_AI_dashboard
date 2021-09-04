@@ -81,7 +81,7 @@ def draw_topics(index, num):
     sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:num]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
     fig1 = px.histogram(df, x='weight', y='words', template='plotly_white', width = 700, height = 500)
-    fig1.update_xaxes(title_text='Keyword weight')
+    fig1.update_xaxes(title_text='Term frequency')
     fig1.update_yaxes(title_text='Topic Keywords')
     return fig1
 
