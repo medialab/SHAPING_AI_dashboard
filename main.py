@@ -104,7 +104,7 @@ elif choice == 'Media':
 elif choice == 'Topics':
     st.title("Top words discussed in each topic")
     st.info(
-        'Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Gensim open-source Python library for unsupervised topic modeling and natural language processing. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
+        'Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
     st.subheader('Choose Topic')
     option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
     st.subheader("Number of results")
