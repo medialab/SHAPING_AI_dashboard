@@ -12,6 +12,7 @@ pip install -r requirements.txt
 ```
 
 ## Data 
+<code>data_wrangling.ipynb</code>: Python code with data preprocessing, features engineering, text cleaning and visualisations
 
 <code>dist_articles.csv</code>: distribution of the articles over 10 years period
 
