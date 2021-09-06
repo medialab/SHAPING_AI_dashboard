@@ -9,7 +9,6 @@ Create a python virtual environnemnt and install the requirement.txt package usi
 
 ```
 pip install -r requirements.txt
-
 ```
 
 ## Text preprocessing
@@ -28,6 +27,10 @@ pip install -r requirements.txt
 <code>lda_model.jl</code>: LDA model
 
 <code>vocab.jl</code>: corpus vocabulary 
+
+## Network
+
+<code>BUNDLE - Shaping AI Network.json</code>: terms network, created using [Gephie](https://gephi.org/) and [MiniVan](https://medialab.sciencespo.fr/en/tools/minivan/) software.
 
 ## Launching the App
 
