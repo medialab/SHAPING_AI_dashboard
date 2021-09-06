@@ -27,7 +27,7 @@ st.set_page_config(
 image = Image.open('logo_medialab.png')
 st.sidebar.image(image)
 st.sidebar.title('Navigate')
-choice = st.sidebar.radio("",('Home', 'Articles','Media', 'Topics', 'Network'))
+choice = st.sidebar.radio("",('Home', 'Articles', 'Words usage', 'Media', 'Topics', 'Terms Network'))
 st.sidebar.title("About")
 st.sidebar.info(
     """
@@ -44,6 +44,14 @@ def draw_dist():
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Articles Count')
     fig.update_traces(xbins_size="M1")
+    return fig
+
+## MODULE BIGRAMS ##
+dist_bigram_df = pd.read_csv('dist_bigram.csv')
+def draw_bigram(data):
+    fig = px.bar(data, x='count', y='bigram', title='Counts of top bigrams', template='plotly_white',width = 800, height = 500)
+    fig.update_xaxes(title_text='Words count')
+    fig.update_yaxes(title_text='Bigram')
     return fig
 
 ## MODULE MEDIA ##
@@ -94,6 +102,13 @@ elif choice == 'Articles':
     st.title('Articles distribution over time')
     st.info('The plot represents the distribution of the articles published by all media sources for 10 years period: from January 2011 to December 2020.')
     st.plotly_chart(draw_dist())
+elif choice == 'Words usage':
+    st.title('Most frequent words')
+    st.info('Choose the number of bigrams you would like to display.')
+    st.subheader("Number of results")
+    num = st.slider("", 5, 20)
+    data = dist_bigram_df[:num]
+    st.plotly_chart(draw_bigram(data))
 elif choice == 'Media':
     st.title('Main Media actors')
     st.info('Choose the number of media sources you would like to display.')
@@ -140,7 +155,7 @@ elif choice == 'Topics':
     elif option_2_s == '10':
         #st.pyplot(draw_word_cloud(9, option_3_s))
         st.plotly_chart(draw_topics(9, option_3_s))
-elif choice == 'Network':
+elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
         """The network represents the links (co-occurrence in the text) between the terms extracted from all corpora. The node's colors are allocated by the Louvain Method of community detection.""")
