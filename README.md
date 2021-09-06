@@ -18,6 +18,8 @@ pip install -r requirements.txt
 
 <code>dist_media</code>: distribution of the media and published articles
 
+<code>dist_bigram</code>: distribution of the bigrams count
+
 <code>lda_model.jl</code>: LDA model
 
 <code>vocab.jl</code>: corpus vocabulary 
