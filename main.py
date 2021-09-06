@@ -24,7 +24,7 @@ st.set_page_config(
 )
 
 ## SIDEBAR ##
-image = Image.open('logo_medialab.png')
+image = Image.open('images/logo_medialab.png')
 st.sidebar.image(image)
 st.sidebar.title('Navigate')
 choice = st.sidebar.radio("",('Home', 'Articles', 'Words usage', 'Media', 'Topics', 'Terms Network'))
@@ -38,7 +38,7 @@ st.sidebar.info("Feel free to collaborate and comment on the work. The github li
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
 
 ## MODULE ARTICLES ##
-dist_articles_df = pd.read_csv('dist_articles.csv', parse_dates=['date'])
+dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
 def draw_dist():
     fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', range_x=['2011','2021'],width = 800, height = 500)
     fig.update_xaxes(title_text='Year')
@@ -47,7 +47,7 @@ def draw_dist():
     return fig
 
 ## MODULE BIGRAMS ##
-dist_bigram_df = pd.read_csv('dist_bigram.csv')
+dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 def draw_bigram(data):
     fig = px.bar(data, x='count', y='bigram', title='Counts of top bigrams', template='plotly_white',width = 800, height = 500)
     fig.update_xaxes(title_text='Words count')
@@ -55,7 +55,7 @@ def draw_bigram(data):
     return fig
 
 ## MODULE MEDIA ##
-dist_media_df = pd.read_csv('dist_media.csv')
+dist_media_df = pd.read_csv('data/dist_media.csv')
 def draw_media(data):
     fig = px.histogram(data, x='count', y='index', template='plotly_white', width = 700, height = 500)
     fig.update_xaxes(title_text='Number of articles published from 2011 to 2021')
@@ -64,8 +64,8 @@ def draw_media(data):
     return fig
 
 ## MODULE TOPICS ##
-lda_model = joblib.load('lda_model.jl')
-vocab = joblib.load('vocab.jl')
+lda_model = joblib.load('lda/lda_model.jl')
+vocab = joblib.load('lda/vocab.jl')
 def draw_word_cloud(index, maxwords):
   imp_words_topic=""
   comp=lda_model.components_[index]
@@ -160,6 +160,5 @@ elif choice == 'Terms Network':
     st.info(
         """The network represents the links (co-occurrence in the text) between the terms extracted from all corpora. The node's colors are allocated by the Louvain Method of community detection.""")
     components.iframe(
-        'https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2FBUNDLE%2520-%2520Shaping%2520AI%2520Network.json&color=cluster_label&lockNavigation=true&name=&ratio=1.3436928&showLink=true&size=weight&x=0.5308020842190102&y=0.3783239544591892',
+        'https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2Fnetwork%2FBUNDLE%2520-%2520Shaping%2520AI%2520Network.json&color=cluster_label&lockNavigation=true&name=&ratio=1.3436928&showLink=true&size=weight&x=0.5308020842190102&y=0.3783239544591892',
         width=800, height=500)
-
