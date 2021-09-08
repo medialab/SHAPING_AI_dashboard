@@ -64,7 +64,6 @@ def draw_media(data):
     return fig
 
 ## MODULE TOPICS ##
-@st.cache
 lda_model = joblib.load('lda/lda_model.jl')
 vocab = joblib.load('lda/vocab.jl')
 def draw_word_cloud(index, maxwords):
