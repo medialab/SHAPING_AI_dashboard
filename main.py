@@ -97,7 +97,6 @@ def draw_topics(index, num):
     return fig
 
 topics_data = pd.read_csv('data/dist_topic.csv')
-topics_df = pd.read_excel('data/topics_df.xlsx')
 
 def draw_dist_topic(data):
     fig = px.line(data, x="year", y="norm", color='topic', range_x=['2011', '2020'])
@@ -133,7 +132,6 @@ elif choice == 'Topics':
     st.title("Top words discussed in each topic")
     st.info(
         'Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
-    st.dataframe(topics_df)
     st.subheader('Choose Topic')
     option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
     st.subheader("Number of results")
