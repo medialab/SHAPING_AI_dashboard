@@ -49,22 +49,23 @@ def draw_dist():
 ## MODULE BIGRAMS ##
 dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 def draw_bigram(data):
-    fig = px.bar(data, x='count', y='bigram', title='Counts of top bigrams', template='plotly_white',width = 800, height = 500)
+    fig = px.bar(data, x='count', y='bigram', title='Counts of top bigrams', orientation='h', width = 800, height = 500)
     fig.update_xaxes(title_text='Words count')
     fig.update_yaxes(title_text='Bigram')
+    fig.update_yaxes(autorange="reversed")
     return fig
 
 ## MODULE MEDIA ##
 dist_media_df = pd.read_csv('data/dist_media.csv')
 def draw_media(data):
-    fig = px.histogram(data, x='count', y='index', template='plotly_white', width = 700, height = 500)
+    fig = px.histogram(data, x='count', y='index', orientation='h', width = 700, height = 500)
     fig.update_xaxes(title_text='Number of articles published from 2011 to 2021')
     fig.update_yaxes(title_text='Media')
+    fig.update_yaxes(autorange="reversed")
     fig.update_traces(xbins_size="M1")
     return fig
 
 ## MODULE TOPICS ##
-@st.cache
 lda_model = joblib.load('lda/lda_model.jl')
 vocab = joblib.load('lda/vocab.jl')
 def draw_word_cloud(index, maxwords):
@@ -89,10 +90,22 @@ def draw_topics(index, num):
     vocab_comp = zip(vocab, comp)
     sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:num]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
-    fig1 = px.histogram(df, x='weight', y='words', template='plotly_white', width = 700, height = 500)
-    fig1.update_xaxes(title_text='Term frequency')
-    fig1.update_yaxes(title_text='Topic Keywords')
-    return fig1
+    fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 700, height = 500)
+    fig.update_xaxes(title_text='Term frequency')
+    fig.update_yaxes(title_text='Topic Keywords')
+    fig.update_yaxes(autorange="reversed")
+    return fig
+
+topics_data = pd.read_csv('data/dist_topic.csv')
+topics_df = pd.read_excel('data/topics_df.xlsx')
+
+def draw_dist_topic(data):
+    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2011', '2020'])
+    fig.update_traces(mode='markers+lines')
+    fig.update_xaxes(title_text='Year')
+    fig.update_yaxes(title_text='Topic count (normalized)')
+    fig.update_layout(showlegend=False)
+    return fig
 
 ## MODULE CHOICE ##
 if choice == 'Home':
@@ -105,10 +118,9 @@ elif choice == 'Articles':
     st.plotly_chart(draw_dist())
 elif choice == 'Words usage':
     st.title('Most frequent words')
-    st.info('Choose the number of bigrams you would like to display.')
-    st.subheader("Number of results")
-    num = st.slider("", 5, 20)
-    data = dist_bigram_df[:num]
+    st.info('Choose the year you would like to display.')
+    #num = st.slider("", 5, 20)
+    data = dist_bigram_df[:20]
     st.plotly_chart(draw_bigram(data))
 elif choice == 'Media':
     st.title('Main Media actors')
@@ -121,6 +133,7 @@ elif choice == 'Topics':
     st.title("Top words discussed in each topic")
     st.info(
         'Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
+    st.dataframe(topics_df)
     st.subheader('Choose Topic')
     option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
     st.subheader("Number of results")
@@ -129,33 +142,63 @@ elif choice == 'Topics':
     if option_2_s == '1':
         #st.pyplot(draw_word_cloud(0, option_3_s))
         st.plotly_chart(draw_topics(0, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 0]
+        st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '2':
         #st.pyplot(draw_word_cloud(1, option_3_s))
         st.plotly_chart(draw_topics(1, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 1]
+        st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '3':
         #st.pyplot(draw_word_cloud(2, option_3_s))
         st.plotly_chart(draw_topics(2, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 2]
+        st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '4':
         #st.pyplot(draw_word_cloud(3, option_3_s))
         st.plotly_chart(draw_topics(3, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 3]
+        st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '5':
         #st.pyplot(draw_word_cloud(4, option_3_s))
         st.plotly_chart(draw_topics(4, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 4]
+        st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '6':
         #st.pyplot(draw_word_cloud(5, option_3_s))
         st.plotly_chart(draw_topics(5, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 5]
+        st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '7':
         #st.pyplot(draw_word_cloud(6, option_3_s))
         st.plotly_chart(draw_topics(6, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 6]
+        st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '8':
         #st.pyplot(draw_word_cloud(7, option_3_s))
         st.plotly_chart(draw_topics(7, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 7]
+        st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '9':
         #st.pyplot(draw_word_cloud(8, option_3_s))
         st.plotly_chart(draw_topics(8, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 8]
+        st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '10':
         #st.pyplot(draw_word_cloud(9, option_3_s))
         st.plotly_chart(draw_topics(9, option_3_s))
+        st.subheader("Topic  distribution over time")
+        topics = topics_data[topics_data['topic'] == 9]
+        st.plotly_chart(draw_dist_topic(topics))
 elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
