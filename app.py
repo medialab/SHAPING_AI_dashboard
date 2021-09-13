@@ -111,7 +111,7 @@ elif choice == 'Articles':
     st.info(' Search queries'
             ': "*intelligence artificielle*" OR "*IA*" OR "*algorithme*" OR "*apprentissage profond*" OR "*apprentissage machine*" OR "*réseau de neurone*" OR "*machine learning*" OR "*deep learning*" OR "*neural network*"')
     st.markdown('### Text Corpus')
-    st.markdown('Data wrangling included removal of missing values, dublicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. Total number of articles in the final corpus is 47162.')
+    st.markdown('Data wrangling included removal of missing values, dublicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. Total number of articles in the final corpus is 48149.')
     st.title('Articles distribution over time')
     st.info('The plot represents the distribution of the articles published by all media sources for 10 years period: from January 2011 to December 2020.')
     st.plotly_chart(draw_dist())
