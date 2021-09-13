@@ -107,8 +107,9 @@ if choice == 'Home':
 elif choice == 'Articles':
     st.title('Data')
     st.markdown('### Europresse Database')
-    st.markdown('Corpus was extracted using search by keywords in title and lead paragraph of articles. National and regional French media publishing in French language. Time period of 10 years from 1 January 2011 to 31 December 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
-    st.info(' Search queries: "*intelligence artificielle*" OR "*IA*" OR "*algorithme*" OR "*apprentissage profond*" OR "*apprentissage machine*" OR "*réseau de neurone*" OR "*machine learning*" OR "*deep learning*" OR "*neural network*"')
+    st.markdown('Corpus was extracted using search by keywords in title and lead paragraph of articles. National and regional French media publishing in French language. Time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
+    st.info(' Search queries'
+            ': "*intelligence artificielle*" OR "*IA*" OR "*algorithme*" OR "*apprentissage profond*" OR "*apprentissage machine*" OR "*réseau de neurone*" OR "*machine learning*" OR "*deep learning*" OR "*neural network*"')
     st.markdown('### Text Corpus')
     st.markdown('Data wrangling included removal of missing values, dublicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. Total number of articles in the final corpus is 47162.')
     st.title('Articles distribution over time')
