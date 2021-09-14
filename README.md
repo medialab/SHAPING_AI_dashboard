@@ -28,9 +28,6 @@ pip install -r requirements.txt
 
 <code>vocab.jl</code>: corpus vocabulary 
 
-## Network
-
-<code>BUNDLE - Shaping AI Network.json</code>: terms network, created using [Gephie](https://gephi.org/) and [MiniVan](https://medialab.sciencespo.fr/en/tools/minivan/) software.
 
 ## Launching the App
 
