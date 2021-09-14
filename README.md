@@ -22,6 +22,8 @@ pip install -r requirements.txt
 
 <code>dist_bigram</code>: distribution of the bigrams count
 
+<code>dist_topic.csv</code>: distribution of the topics over time
+
 ## Topic Modeling
 
 <code>lda_model.jl</code>: LDA model
