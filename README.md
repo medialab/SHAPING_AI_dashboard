@@ -1,5 +1,5 @@
 # SHAPING_AI_dashboard 📈
-This Streamlit app is [deployed on Streamlit Sharing](https://share.streamlit.io/). You can also clic on this [link](https://share.streamlit.io/yuliianikolaenko/shaping-ai-dashboard/main/main.py) to visualize the dashboard.
+This Streamlit app is [deployed on Streamlit Sharing](https://share.streamlit.io/). You can also click on this [link](https://share.streamlit.io/yuliianikolaenko/shaping-ai-dashboard/main/main.py) to visualize the dashboard.
 
 This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.
 
