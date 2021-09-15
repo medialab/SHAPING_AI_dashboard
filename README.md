@@ -1,5 +1,5 @@
 # SHAPING_AI_dashboard 📈
-This Streamlit app is [deployed on Streamlit Sharing](https://share.streamlit.io/). You can also clic on this [link](https://share.streamlit.io/yuliianikolaenko/shaping-ai-dashboard/main/main.py) to visualize the dashboard.
+This Streamlit app is [deployed on Streamlit Sharing](https://share.streamlit.io/). You can also click on this [link](https://share.streamlit.io/yuliianikolaenko/shaping-ai-dashboard/main/main.py) to visualize the dashboard.
 
 This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.
 
@@ -22,21 +22,20 @@ pip install -r requirements.txt
 
 <code>dist_bigram</code>: distribution of the bigrams count
 
+<code>dist_topic.csv</code>: distribution of the topics over time
+
 ## Topic Modeling
 
 <code>lda_model.jl</code>: LDA model
 
 <code>vocab.jl</code>: corpus vocabulary 
 
-## Network
-
-<code>BUNDLE - Shaping AI Network.json</code>: terms network, created using [Gephie](https://gephi.org/) and [MiniVan](https://medialab.sciencespo.fr/en/tools/minivan/) software.
 
 ## Launching the App
 
 Run the following line in the terminal, it will launch the Dashboard locally in the default browser.
 
 ```
-streamlit run main.py
+streamlit run app.py
 ```
 
