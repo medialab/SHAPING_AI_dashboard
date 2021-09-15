@@ -104,8 +104,8 @@ if choice == 'Home':
     st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigates the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
     st.info('This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.')
 elif choice == 'Articles':
-    col1, col2 = st.columns(2)
     st.title('Data')
+    col1, col2 = st.columns(2)
     col1.markdown('### Europresse Database')
     col1.markdown('Corpus was extracted using search by keywords in title and lead paragraph of articles. National and regional French media publishing in French language. Time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
     col1.info(' Search queries'
@@ -141,52 +141,53 @@ elif choice == 'Topics':
     col1.subheader('Topic keywords')
     if option_2_s == '1':
         st.plotly_chart(draw_topics(0, option_3_s))
-        st.subheader("Topic  distribution over time")
+    elif option_2_s == '2':
+        st.plotly_chart(draw_topics(1, option_3_s))
+    elif option_2_s == '3':
+        st.plotly_chart(draw_topics(2, option_3_s))
+    elif option_2_s == '4':
+        st.plotly_chart(draw_topics(3, option_3_s))
+    elif option_2_s == '5':
+        st.plotly_chart(draw_topics(4, option_3_s))
+    elif option_2_s == '6':
+         st.plotly_chart(draw_topics(5, option_3_s))
+    elif option_2_s == '7':
+         st.plotly_chart(draw_topics(6, option_3_s))
+    elif option_2_s == '8':
+         st.plotly_chart(draw_topics(8, option_3_s))
+    elif option_2_s == '9':
+         st.plotly_chart(draw_topics(8, option_3_s))
+    elif option_2_s == '10':
+         st.plotly_chart(draw_topics(9, option_3_s))
+    col2.subheader('Topic distribution over time')
+    if option_2_s == '1':
         topics = topics_data[topics_data['topic'] == 0]
         st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '2':
-        st.plotly_chart(draw_topics(1, option_3_s))
-        st.subheader("Topic  distribution over time")
         topics = topics_data[topics_data['topic'] == 1]
         st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '3':
-        st.plotly_chart(draw_topics(2, option_3_s))
-        st.subheader("Topic  distribution over time")
         topics = topics_data[topics_data['topic'] == 2]
         st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '4':
-        st.plotly_chart(draw_topics(3, option_3_s))
-        st.subheader("Topic  distribution over time")
         topics = topics_data[topics_data['topic'] == 3]
         st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '5':
-        st.plotly_chart(draw_topics(4, option_3_s))
-        st.subheader("Topic  distribution over time")
         topics = topics_data[topics_data['topic'] == 4]
         st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '6':
-         st.plotly_chart(draw_topics(5, option_3_s))
-         st.subheader("Topic  distribution over time")
          topics = topics_data[topics_data['topic'] == 5]
          st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '7':
-         st.plotly_chart(draw_topics(6, option_3_s))
-         st.subheader("Topic  distribution over time")
          topics = topics_data[topics_data['topic'] == 6]
          st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '8':
-         st.plotly_chart(draw_topics(8, option_3_s))
-         st.subheader("Topic  distribution over time")
          topics = topics_data[topics_data['topic'] == 8]
          st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '9':
-         st.plotly_chart(draw_topics(8, option_3_s))
-         st.subheader("Topic  distribution over time")
          topics = topics_data[topics_data['topic'] == 8]
          st.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '10':
-         st.plotly_chart(draw_topics(9, option_3_s))
-         st.subheader("Topic  distribution over time")
          topics = topics_data[topics_data['topic'] == 9]
          st.plotly_chart(draw_dist_topic(topics))
 elif choice == 'Terms Network':
