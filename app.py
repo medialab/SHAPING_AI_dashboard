@@ -43,7 +43,7 @@ def draw_dist():
 ################################################### MODULE BIGRAMS ###################################################
 dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 def draw_bigram(data):
-    fig = px.bar(data, x='count', y='bigram', title='Counts of top bigrams', orientation='h', width = 800, height = 500)
+    fig = px.bar(data, x='count', y='bigram', title='Counts of top bigrams', orientation='h', width = 500, height = 400)
     fig.update_yaxes(title_text='Bigram')
     fig.update_yaxes(autorange="reversed")
     return fig
@@ -51,7 +51,7 @@ def draw_bigram(data):
 ################################################### MODULE MEDIA ###################################################
 dist_media_df = pd.read_csv('data/dist_media.csv')
 def draw_media(data):
-    fig = px.histogram(data, x='count', y='index', orientation='h', width = 700, height = 500)
+    fig = px.histogram(data, x='count', y='index', orientation='h', width = 500, height = 400)
     fig.update_xaxes(title_text='Number of articles published from 2011 to 2021')
     fig.update_yaxes(title_text='Media')
     fig.update_yaxes(autorange="reversed")
