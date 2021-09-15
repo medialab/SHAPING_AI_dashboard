@@ -105,13 +105,12 @@ if choice == 'Home':
     st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigates the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
     st.info('This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.')
     st.title('Data')
-    col1, col2 = st.columns(2)
-    col1.markdown('### Europresse Database')
-    col1.markdown('Corpus was extracted using search by keywords in title and lead paragraph of articles. National and regional French media publishing in French language. Time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
-    col1.info(' Search queries'
+    st.markdown('### Europresse Database')
+    st.markdown('Corpus was extracted using search by keywords in title and lead paragraph of articles. National and regional French media publishing in French language. Time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
+    st.info(' Search queries'
             ': "*intelligence artificielle*" OR "*IA*" OR "*algorithme*" OR "*apprentissage profond*" OR "*apprentissage machine*" OR "*réseau de neurone*" OR "*machine learning*" OR "*deep learning*" OR "*neural network*"')
-    col2.markdown('### Text Corpus')
-    col2.markdown('Data wrangling included removal of missing values, dublicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. Total number of articles in the final corpus is 48411'
+    st.markdown('### Text Corpus')
+    st.markdown('Data wrangling included removal of missing values, dublicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. Total number of articles in the final corpus is 48411'
                 '.')
 elif choice == 'Analysis':
     st.title('Analysis')
