@@ -2,7 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
 import plotly.express as px
-from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from PIL import Image
 import joblib
@@ -101,7 +100,6 @@ def draw_dist_topic(data):
 
 ################################################### MODULE CHOICE ###################################################
 if choice == 'Home':
-    col1, col2 = st.columns(2)
     st.title("SHAPING AI MEDIA DASHBOARD")
     st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigates the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
     st.info('This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.')
