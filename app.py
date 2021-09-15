@@ -136,7 +136,7 @@ elif choice == 'Topics':
     st.subheader('Choose Topic')
     option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
     st.subheader("Number of results")
-    option_3_s = st.slider("", 5, 50)
+    option_3_s = st.slider("", 5, 10)
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
     if option_2_s == '1':
