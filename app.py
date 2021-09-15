@@ -44,7 +44,6 @@ def draw_dist():
 dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 def draw_bigram(data):
     fig = px.bar(data, x='count', y='bigram', title='Counts of top bigrams', orientation='h', width = 800, height = 500)
-    fig.update_xaxes(title_text='Words count')
     fig.update_yaxes(title_text='Bigram')
     fig.update_yaxes(autorange="reversed")
     return fig
@@ -118,14 +117,13 @@ elif choice == 'Articles':
     st.plotly_chart(draw_dist())
 elif choice == 'Analysis':
     st.title('Analysis')
+    st.info('Choose the number of results you would like to display.')
+    num = st.slider("", 5, 20)
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = dist_bigram_df[:20]
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
-    col2.info('Choose the number of media sources you would like to display.')
-    col2.subheader("Number of results")
-    num = col2.slider("", 5, 20)
     data = dist_media_df[:num]
     col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
