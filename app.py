@@ -21,7 +21,7 @@ st.set_page_config(
 image = Image.open('images/logo_medialab.png')
 st.sidebar.image(image)
 st.sidebar.title('Navigate')
-choice = st.sidebar.radio("",('Home', 'Articles', 'Words usage', 'Media', 'Topics', 'Terms Network'))
+choice = st.sidebar.radio("",('Home', 'Articles', 'Analysis', 'Topics', 'Terms Network'))
 st.sidebar.title("About")
 st.sidebar.info(
     """
@@ -116,19 +116,17 @@ elif choice == 'Articles':
     st.title('Articles distribution over time')
     st.info('The plot represents the distribution of the articles published by all media sources for 10 years period: from January 2011 to December 2020.')
     st.plotly_chart(draw_dist())
-elif choice == 'Words usage':
-    st.title('Most frequent words')
-    #st.info('Choose the year you would like to display.')
-    #num = st.slider("", 5, 20)
+elif choice == 'Analysis':
+    st.title('Analysis')
+    col1.subheader('Most frequent words')
     data = dist_bigram_df[:20]
-    st.plotly_chart(draw_bigram(data))
-elif choice == 'Media':
-    st.title('Main Media actors')
-    st.info('Choose the number of media sources you would like to display.')
-    st.subheader("Number of results")
-    num = st.slider("", 5, 20)
+    col1.plotly_chart(draw_bigram(data))
+    col2.subheader('Main Media actors')
+    col2.info('Choose the number of media sources you would like to display.')
+    col2.subheader("Number of results")
+    num = col2.slider("", 5, 20)
     data = dist_media_df[:num]
-    st.plotly_chart(draw_media(data))
+    col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
