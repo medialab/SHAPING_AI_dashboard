@@ -84,14 +84,14 @@ def draw_topics(index, num):
     vocab_comp = zip(vocab, comp)
     sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:num]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
-    fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 500, height = 300)
+    fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 500, height = 500)
     fig.update_xaxes(title_text='Term frequency')
     fig.update_yaxes(title_text='Topic Keywords')
     fig.update_yaxes(autorange="reversed")
     return fig
 
 def draw_dist_topic(data):
-    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2011', '2020'], width = 500, height = 300)
+    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2011', '2020'], width = 500, height = 500)
     fig.update_traces(mode='markers+lines')
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Topic count (normalized)')
