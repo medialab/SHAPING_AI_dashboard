@@ -21,7 +21,7 @@ st.set_page_config(
 image = Image.open('images/logo_medialab.png')
 st.sidebar.image(image)
 st.sidebar.title('Navigate')
-choice = st.sidebar.radio("",('Home', 'Articles', 'Analysis', 'Topics', 'Terms Network'))
+choice = st.sidebar.radio("",('Home', 'Analysis', 'Topics', 'Terms Network'))
 st.sidebar.title("About")
 st.sidebar.info(
     """
@@ -104,7 +104,6 @@ if choice == 'Home':
     st.title("SHAPING AI MEDIA DASHBOARD")
     st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigates the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
     st.info('This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.')
-elif choice == 'Articles':
     st.title('Data')
     col1, col2 = st.columns(2)
     col1.markdown('### Europresse Database')
@@ -114,22 +113,21 @@ elif choice == 'Articles':
     col2.markdown('### Text Corpus')
     col2.markdown('Data wrangling included removal of missing values, dublicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. Total number of articles in the final corpus is 48411'
                 '.')
-    st.title('Articles distribution over time')
-    st.info('The plot represents the distribution of the articles published by all media sources for 10 years period: from January 2011 to December 2020.')
-    st.plotly_chart(draw_dist())
 elif choice == 'Analysis':
     st.title('Analysis')
-    st.info('Choose the year you want to analyse.')
+    st.info('Choose the time period you want to analyse.')
     year = st.selectbox('Year', ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'])
-    st.info('Choose the number of results you would like to display.')
-    num = st.slider("", 5, 20)
     col1, col2 = st.columns(2)
-    col1.subheader('Most frequent words')
-    data = dist_bigram_df[:num]
-    col1.plotly_chart(draw_bigram(data))
-    col2.subheader('Main Media actors')
-    data = dist_media_df[:num]
-    col2.plotly_chart(draw_media(data))
+    col1.subheader('Articles distribution over time')
+    col1.info('The plot represents the distribution of the articles published by all media sources for 10 years period: from January 2011 to December 2020.')
+    st.plotly_chart(draw_dist())
+    col2.subheader('Most frequent words')
+    data = dist_bigram_df[:20]
+    col2.plotly_chart(draw_bigram(data))
+    col1, col2 = st.columns(2)
+    col1.subheader('Main Media actors')
+    data = dist_media_df[:20]
+    col1.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
