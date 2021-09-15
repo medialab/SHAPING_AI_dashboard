@@ -121,9 +121,9 @@ elif choice == 'Analysis':
     st.title('Analysis')
     st.info('Choose the year you want to analyse.')
     year = st.selectbox('Year', ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'])
-    col1, col2 = st.columns(2)
     st.info('Choose the number of results you would like to display.')
     num = st.slider("", 5, 20)
+    col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = dist_bigram_df[:num]
     col1.plotly_chart(draw_bigram(data))
