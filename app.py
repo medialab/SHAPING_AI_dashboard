@@ -44,8 +44,8 @@ def draw_dist():
 dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 def draw_bigram(data):
     fig = px.bar(data, x='count', y='bigram', orientation='h', width = 500, height = 400)
+    fig.update_yaxes(title_text='')
     fig.update_xaxes(title_text='Count')
-    fig.update_yaxes(visible=False)
     fig.update_yaxes(autorange="reversed")
     return fig
 
@@ -54,7 +54,7 @@ dist_media_df = pd.read_csv('data/dist_media.csv')
 def draw_media(data):
     fig = px.histogram(data, x='count', y='index', orientation='h', width = 500, height = 400)
     fig.update_xaxes(title_text='Count of articles published')
-    fig.update_yaxes(visible=False)
+    fig.update_yaxes(title_text='')
     fig.update_yaxes(autorange="reversed")
     fig.update_traces(xbins_size="M1")
     return fig
@@ -63,6 +63,7 @@ def draw_media(data):
 lda_model = joblib.load('lda/lda_model.jl')
 vocab = joblib.load('lda/vocab.jl')
 topics_data = pd.read_csv('data/dist_topic.csv')
+
 def draw_word_cloud(index, maxwords):
   imp_words_topic=""
   comp=lda_model.components_[index]
