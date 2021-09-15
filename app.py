@@ -123,7 +123,7 @@ elif choice == 'Analysis':
     num = st.slider("", 5, 20)
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
-    data = dist_bigram_df[num]
+    data = dist_bigram_df[:num]
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
     data = dist_media_df[:num]
