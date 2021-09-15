@@ -33,8 +33,8 @@ st.sidebar.info("Feel free to collaborate and comment on the work. The github li
 
 ################################################### MODULE ARTICLES ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
-def draw_dist():
-    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', range_x=[2020, 2021], width = 500, height = 400)
+def draw_dist(start, end):
+    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', range_x=[start, end], width = 500, height = 400)
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Articles Count')
     fig.update_traces(xbins_size="M1")
@@ -92,7 +92,7 @@ def draw_topics(index, num):
     return fig
 
 def draw_dist_topic(data):
-    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2011', '2020'], width = 500, height = 400)
+    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 500, height = 400)
     fig.update_traces(mode='markers+lines')
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Topic count (normalized)')
@@ -115,7 +115,9 @@ if choice == 'Home':
 elif choice == 'Analysis':
     st.title('Analysis')
     st.info('Choose the time period you want to analyse.')
-    year = st.slider('', min_value=2011, value=2020 ,max_value=2020)
+    start='2010'
+    end='2021'
+    year = st.slider('', min_value=start, value=end ,max_value=2020)
     col1, col2 = st.columns(2)
     col1.subheader('Articles distribution over time')
     col1.plotly_chart(draw_dist())
