@@ -116,7 +116,11 @@ if choice == 'Home':
 elif choice == 'Analysis':
     st.title('Analysis')
     st.info('Choose the time period you want to analyse.')
-    year = st.selectbox('Year', ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'])
+    format = 'MMM DD, YYYY' 
+    start_date = dt.date(year=2021,month=1,day=1)-relativedelta(years=2)  #  I need some range in the past
+    end_date = dt.datetime.now().date()-relativedelta(years=2)
+    max_days = end_date-start_date
+    slider = st.slider('Select date', min_value=start_date, value=end_date ,max_value=end_date, format=format)
     col1, col2 = st.columns(2)
     col1.subheader('Articles distribution over time')
     col1.plotly_chart(draw_dist())
