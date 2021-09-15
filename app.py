@@ -110,12 +110,12 @@ elif choice == 'Articles':
     col1.markdown('Corpus was extracted using search by keywords in title and lead paragraph of articles. National and regional French media publishing in French language. Time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
     col1.info(' Search queries'
             ': "*intelligence artificielle*" OR "*IA*" OR "*algorithme*" OR "*apprentissage profond*" OR "*apprentissage machine*" OR "*réseau de neurone*" OR "*machine learning*" OR "*deep learning*" OR "*neural network*"')
-    col1.markdown('### Text Corpus')
-    col1.markdown('Data wrangling included removal of missing values, dublicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. Total number of articles in the final corpus is 48411'
+    col2.markdown('### Text Corpus')
+    col2.markdown('Data wrangling included removal of missing values, dublicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. Total number of articles in the final corpus is 48411'
                 '.')
-    col2.title('Articles distribution over time')
-    col2.info('The plot represents the distribution of the articles published by all media sources for 10 years period: from January 2011 to December 2020.')
-    col2.plotly_chart(draw_dist())
+    st.title('Articles distribution over time')
+    st.info('The plot represents the distribution of the articles published by all media sources for 10 years period: from January 2011 to December 2020.')
+    st.plotly_chart(draw_dist())
 elif choice == 'Words usage':
     st.title('Most frequent words')
     #st.info('Choose the year you would like to display.')
