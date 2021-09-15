@@ -140,56 +140,56 @@ elif choice == 'Topics':
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
     if option_2_s == '1':
-        st.plotly_chart(draw_topics(0, option_3_s))
+        col1.plotly_chart(draw_topics(0, option_3_s))
     elif option_2_s == '2':
-        st.plotly_chart(draw_topics(1, option_3_s))
+        col1.plotly_chart(draw_topics(1, option_3_s))
     elif option_2_s == '3':
-        st.plotly_chart(draw_topics(2, option_3_s))
+        col1.plotly_chart(draw_topics(2, option_3_s))
     elif option_2_s == '4':
-        st.plotly_chart(draw_topics(3, option_3_s))
+        col1.plotly_chart(draw_topics(3, option_3_s))
     elif option_2_s == '5':
-        st.plotly_chart(draw_topics(4, option_3_s))
+        col1.plotly_chart(draw_topics(4, option_3_s))
     elif option_2_s == '6':
-         st.plotly_chart(draw_topics(5, option_3_s))
+         col1.plotly_chart(draw_topics(5, option_3_s))
     elif option_2_s == '7':
-         st.plotly_chart(draw_topics(6, option_3_s))
+         col1.plotly_chart(draw_topics(6, option_3_s))
     elif option_2_s == '8':
-         st.plotly_chart(draw_topics(8, option_3_s))
+         col1.plotly_chart(draw_topics(8, option_3_s))
     elif option_2_s == '9':
-         st.plotly_chart(draw_topics(8, option_3_s))
+         col1.plotly_chart(draw_topics(8, option_3_s))
     elif option_2_s == '10':
-         st.plotly_chart(draw_topics(9, option_3_s))
+         col1.plotly_chart(draw_topics(9, option_3_s))
     col2.subheader('Topic distribution over time')
     if option_2_s == '1':
         topics = topics_data[topics_data['topic'] == 0]
-        st.plotly_chart(draw_dist_topic(topics))
+        col2.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '2':
         topics = topics_data[topics_data['topic'] == 1]
-        st.plotly_chart(draw_dist_topic(topics))
+        col2.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '3':
         topics = topics_data[topics_data['topic'] == 2]
-        st.plotly_chart(draw_dist_topic(topics))
+        col2.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '4':
         topics = topics_data[topics_data['topic'] == 3]
-        st.plotly_chart(draw_dist_topic(topics))
+        col2.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '5':
         topics = topics_data[topics_data['topic'] == 4]
-        st.plotly_chart(draw_dist_topic(topics))
+        col2.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '6':
          topics = topics_data[topics_data['topic'] == 5]
-         st.plotly_chart(draw_dist_topic(topics))
+         col2.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '7':
          topics = topics_data[topics_data['topic'] == 6]
-         st.plotly_chart(draw_dist_topic(topics))
+         col2.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '8':
          topics = topics_data[topics_data['topic'] == 8]
-         st.plotly_chart(draw_dist_topic(topics))
+         col2.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '9':
          topics = topics_data[topics_data['topic'] == 8]
-         st.plotly_chart(draw_dist_topic(topics))
+         col2.plotly_chart(draw_dist_topic(topics))
     elif option_2_s == '10':
          topics = topics_data[topics_data['topic'] == 9]
-         st.plotly_chart(draw_dist_topic(topics))
+         col2.plotly_chart(draw_dist_topic(topics))
 elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
