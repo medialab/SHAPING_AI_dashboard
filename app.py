@@ -34,7 +34,7 @@ st.sidebar.info("Feel free to collaborate and comment on the work. The github li
 ################################################### MODULE ARTICLES ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
 def draw_dist():
-    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', range_x=['2011','2021'], width = 500, height = 400)
+    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', range_x=[2020, 2021], width = 500, height = 400)
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Articles Count')
     fig.update_traces(xbins_size="M1")
@@ -115,10 +115,7 @@ if choice == 'Home':
 elif choice == 'Analysis':
     st.title('Analysis')
     st.info('Choose the time period you want to analyse.')
-    start_date = 2011
-    end_date = 2020
-    max_days = end_date-start_date
-    slider = st.slider('', min_value=start_date, value=end_date ,max_value=end_date)
+    year = st.slider('', min_value=2011, value=2020 ,max_value=2020)
     col1, col2 = st.columns(2)
     col1.subheader('Articles distribution over time')
     col1.plotly_chart(draw_dist())
