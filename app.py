@@ -105,7 +105,7 @@ if choice == 'Home':
     st.info('This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.')
 elif choice == 'Articles':
     col1, col2 = st.columns(2)
-    col1.title('Data')
+    st.title('Data')
     col1.markdown('### Europresse Database')
     col1.markdown('Corpus was extracted using search by keywords in title and lead paragraph of articles. National and regional French media publishing in French language. Time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
     col1.info(' Search queries'
@@ -137,7 +137,8 @@ elif choice == 'Topics':
     option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
     st.subheader("Number of results")
     option_3_s = st.slider("", 5, 50)
-    st.subheader('Topic keywords')
+    col1, col2 = st.columns(2)
+    col1.subheader('Topic keywords')
     if option_2_s == '1':
         st.plotly_chart(draw_topics(0, option_3_s))
         st.subheader("Topic  distribution over time")
