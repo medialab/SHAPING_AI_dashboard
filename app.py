@@ -119,8 +119,7 @@ elif choice == 'Analysis':
     year = st.selectbox('Year', ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'])
     col1, col2 = st.columns(2)
     col1.subheader('Articles distribution over time')
-    col1.info('The plot represents the distribution of the articles published by all media sources for 10 years period: from January 2011 to December 2020.')
-    st.plotly_chart(draw_dist())
+    col1.plotly_chart(draw_dist())
     col2.subheader('Most frequent words')
     data = dist_bigram_df[:20]
     col2.plotly_chart(draw_bigram(data))
