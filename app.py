@@ -118,6 +118,7 @@ elif choice == 'Articles':
     st.plotly_chart(draw_dist())
 elif choice == 'Analysis':
     st.title('Analysis')
+    col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = dist_bigram_df[:20]
     col1.plotly_chart(draw_bigram(data))
