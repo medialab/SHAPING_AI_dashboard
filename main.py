@@ -114,18 +114,17 @@ if choice == 'Home':
                 '.')
 elif choice == 'Analysis':
     st.title('Analysis')
+    st.subheader('Articles distribution over time')
+    st.plotly_chart(draw_dist())
     st.info('Choose the time period you want to analyse.')
     year = st.slider('', min_value=2010, value=2020 ,max_value=2020)
     col1, col2 = st.columns(2)
-    col1.subheader('Articles distribution over time')
-    col1.plotly_chart(draw_dist())
-    col2.subheader('Most frequent words')
+    col1.subheader('Most frequent words')
     data = dist_bigram_df[:20]
-    col2.plotly_chart(draw_bigram(data))
-    col1, col2 = st.columns(2)
-    col1.subheader('Main Media actors')
+    col1.plotly_chart(draw_bigram(data))
+    col2.subheader('Main Media actors')
     data = dist_media_df[:20]
-    col1.plotly_chart(draw_media(data))
+    col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
