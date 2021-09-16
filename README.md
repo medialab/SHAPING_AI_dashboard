@@ -36,6 +36,6 @@ pip install -r requirements.txt
 Run the following line in the terminal, it will launch the Dashboard locally in the default browser.
 
 ```
-streamlit run app.py
+streamlit run main.py
 ```
 
