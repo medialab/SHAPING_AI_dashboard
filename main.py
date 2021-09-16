@@ -37,7 +37,7 @@ vocab = joblib.load('lda/vocab.jl')
 topics_data = pd.read_csv('data/dist_topic.csv')
 ################################################### FUNCTIONS ###################################################
 def draw_dist():
-    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', width = 700, height = 500)
+    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', width = 800, height = 500)
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Articles Count')
     fig.update_traces(xbins_size="M1")
