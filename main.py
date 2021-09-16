@@ -91,10 +91,10 @@ if choice == 'Home':
                 '.')
 elif choice == 'Analysis':
     st.title('Analysis')
-    st.subheader('Articles distribution over time')
-    st.plotly_chart(draw_dist())
     st.info('Choose the time period you want to analyse.')
     year = st.slider('', min_value=2010, value=2020 ,max_value=2020)
+    st.subheader('Articles distribution over time')
+    st.plotly_chart(draw_dist())
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = dist_bigram_df[:20]
