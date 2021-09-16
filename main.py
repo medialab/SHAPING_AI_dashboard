@@ -1,3 +1,4 @@
+##################################### IMPORT #####################################################################
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
@@ -5,8 +6,6 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 from PIL import Image
 import joblib
-
-
 ##################################### PAGE CONFIGURATION AND TITLE #################################################
 st.set_page_config(
     # Can be "centered" or "wide". In the future also "dashboard", etc.
@@ -16,7 +15,6 @@ st.set_page_config(
     page_title="SHAPING_AI",
     page_icon=None,  # String, anything supported by st.image, or None.
 )
-
 ################################################### SIDEBAR ###################################################
 image = Image.open('images/logo_medialab.png')
 st.sidebar.image(image)
@@ -30,18 +28,21 @@ st.sidebar.info(
 )
 st.sidebar.info("Feel free to collaborate and comment on the work. The github link can be found "
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
-
-################################################### MODULE ARTICLES ###################################################
+################################################### DATA ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
+dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
+dist_media_df = pd.read_csv('data/dist_media.csv')
+lda_model = joblib.load('lda/lda_model.jl')
+vocab = joblib.load('lda/vocab.jl')
+topics_data = pd.read_csv('data/dist_topic.csv')
+################################################### FUNCTIONS ###################################################
 def draw_dist():
-    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', width = 500, height = 400)
+    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', width = 700, height = 500)
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Articles Count')
     fig.update_traces(xbins_size="M1")
     return fig
 
-################################################### MODULE BIGRAMS ###################################################
-dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 def draw_bigram(data):
     fig = px.bar(data, x='count', y='bigram', orientation='h', width = 500, height = 400)
     fig.update_yaxes(title_text='')
@@ -49,8 +50,6 @@ def draw_bigram(data):
     fig.update_yaxes(autorange="reversed")
     return fig
 
-################################################### MODULE MEDIA ###################################################
-dist_media_df = pd.read_csv('data/dist_media.csv')
 def draw_media(data):
     fig = px.histogram(data, x='count', y='index', orientation='h', width = 500, height = 400)
     fig.update_xaxes(title_text='Count of articles published')
@@ -58,27 +57,6 @@ def draw_media(data):
     fig.update_yaxes(autorange="reversed")
     fig.update_traces(xbins_size="M1")
     return fig
-
-################################################### MODULE TOPICS ###################################################
-lda_model = joblib.load('lda/lda_model.jl')
-vocab = joblib.load('lda/vocab.jl')
-topics_data = pd.read_csv('data/dist_topic.csv')
-
-def draw_word_cloud(index, maxwords):
-  imp_words_topic=""
-  comp=lda_model.components_[index]
-  vocab_comp = zip(vocab, comp)
-  sorted_words = sorted(vocab_comp, key= lambda x:x[1], reverse=True)[:50]
-  for word in sorted_words:
-    imp_words_topic=imp_words_topic+" "+word[0]
-  wordcloud = WordCloud(width = 1000, height = 500, background_color="white",
-                       contour_width=3, contour_color="white", max_words=maxwords).generate(imp_words_topic)
-  fig = plt.figure(figsize=(10,10))
-  plt.imshow(wordcloud)
-  plt.axis("off")
-  plt.tight_layout()
-  plt.show()
-  return fig
 
 def draw_topics(index, num):
     comp = lda_model.components_[index]
@@ -98,7 +76,6 @@ def draw_dist_topic(data):
     fig.update_yaxes(title_text='Topic count (normalized)')
     fig.update_layout(showlegend=False)
     return fig
-
 ################################################### MODULE CHOICE ###################################################
 if choice == 'Home':
     st.title("SHAPING AI MEDIA DASHBOARD")
