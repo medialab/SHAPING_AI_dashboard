@@ -106,7 +106,8 @@ elif choice == 'Analysis':
     col2.subheader('Main Media actors')
     df_journals = df_journals[(df_journals["date"] >= min_selection) & (df_journals["date"] <= max_selection)]
     data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
-    col2.plotly_chart(draw_media(data[:20]))
+    data = data[:20]
+    col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
