@@ -32,6 +32,7 @@ st.sidebar.info("Feel free to collaborate and comment on the work. The github li
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
 dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 dist_media_df = pd.read_csv('data/dist_media.csv')
+df_journals = pd.read_csv('df_journals.csv')
 lda_model = joblib.load('lda/lda_model.jl')
 vocab = joblib.load('lda/vocab.jl')
 topics_data = pd.read_csv('data/dist_topic.csv')
@@ -103,8 +104,9 @@ elif choice == 'Analysis':
     data = dist_bigram_df[:20]
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
-    data = dist_media_df[:20]
-    col2.plotly_chart(draw_media(data))
+    data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
+    data = data[(data["date"] >= min_selection) & (data["date"] <= max_selection)]
+    col2.plotly_chart(draw_media(data[:20]))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
