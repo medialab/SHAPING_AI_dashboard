@@ -52,7 +52,10 @@ def draw_bigram(data):
     return fig
 
 @st.cache
-def draw_media(data):
+def draw_media(data, min_selection, max_selection):
+    df_journals = df_journals[(df_journals["date"] >= min_selection) & (df_journals["date"] <= max_selection)]
+    data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
+    data = data[:20]
     fig = px.histogram(data, x='count', y='index', orientation='h', width = 500, height = 400)
     fig.update_xaxes(title_text='Count of articles published')
     fig.update_yaxes(title_text='')
@@ -105,10 +108,7 @@ elif choice == 'Analysis':
     data = dist_bigram_df[:20]
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
-    df_journals = df_journals[(df_journals["date"] >= min_selection) & (df_journals["date"] <= max_selection)]
-    data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
-    data = data[:20]
-    col2.plotly_chart(draw_media(data))
+    col2.plotly_chart(draw_media(data, min_selection, max_selection))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
