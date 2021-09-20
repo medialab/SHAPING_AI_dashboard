@@ -50,7 +50,6 @@ def draw_bigram(data):
     fig.update_yaxes(autorange="reversed")
     return fig
 
-@st.cache
 def draw_media(data, min_selection, max_selection):
     df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['date'])
     df_journals = df_journals[(df_journals["date"] >= min_selection) & (df_journals["date"] <= max_selection)]
