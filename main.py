@@ -94,11 +94,11 @@ elif choice == 'Analysis':
     st.info('Choose the time period you want to analyse.')
     show_timerange = st.checkbox("Show date range")
     if show_timerange == True:
-    min_ts = min(dist_articles_df['date']).to_pydatetime()
-    max_ts = max(dist_articles_df['date']).to_pydatetime()
-    day_date = pd.to_datetime(st.slider("Date to chose", min_value=min_ts, max_value=max_ts, value=max_ts))
-    st.write(f"Data for {day_date.date()}")
-    dist_articles_df = dist_articles_df[(dist_articles_df['date'] == day_date)]
+        min_ts = min(dist_articles_df['date']).to_pydatetime()
+        max_ts = max(dist_articles_df['date']).to_pydatetime()
+        day_date = pd.to_datetime(st.slider("Date to chose", min_value=min_ts, max_value=max_ts, value=max_ts))
+        st.write(f"Data for {day_date.date()}")
+        dist_articles_df = dist_articles_df[(dist_articles_df['date'] == day_date)]
     st.subheader('Articles distribution over time')
     st.plotly_chart(draw_dist())
     col1, col2 = st.columns(2)
