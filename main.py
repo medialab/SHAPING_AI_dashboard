@@ -29,7 +29,6 @@ st.sidebar.info(
 st.sidebar.info("Feel free to collaborate and comment on the work. The github link can be found "
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
 ################################################### DATA ###################################################
-@st.cache
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
 dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 dist_media_df = pd.read_csv('data/dist_media.csv')
