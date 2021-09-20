@@ -51,7 +51,6 @@ def draw_bigram(data):
     fig.update_yaxes(autorange="reversed")
     return fig
 
-@st.cache
 def draw_media(data, min_selection, max_selection):
     df_journals = df_journals[(df_journals["date"] >= min_selection) & (df_journals["date"] <= max_selection)]
     data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
