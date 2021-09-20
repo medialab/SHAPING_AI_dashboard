@@ -104,8 +104,8 @@ elif choice == 'Analysis':
     data = dist_bigram_df[:20]
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
+    df_journals = df_journals[(df_journals["date"] >= min_selection) & (df_journals["date"] <= max_selection)]
     data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
-    data = data[(data["date"] >= min_selection) & (data["date"] <= max_selection)]
     col2.plotly_chart(draw_media(data[:20]))
 elif choice == 'Topics':
     st.title("Topic Modeling")
