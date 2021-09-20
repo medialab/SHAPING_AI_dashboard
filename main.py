@@ -29,6 +29,7 @@ st.sidebar.info(
 st.sidebar.info("Feel free to collaborate and comment on the work. The github link can be found "
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
 ################################################### DATA ###################################################
+@st.cache
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
 dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 dist_media_df = pd.read_csv('data/dist_media.csv')
@@ -104,7 +105,6 @@ elif choice == 'Analysis':
     data = dist_bigram_df[:20]
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
-    @st.cache
     df_journals = df_journals[(df_journals["date"] >= min_selection) & (df_journals["date"] <= max_selection)]
     data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
     data = data[:20]
