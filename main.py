@@ -36,8 +36,8 @@ lda_model = joblib.load('lda/lda_model.jl')
 vocab = joblib.load('lda/vocab.jl')
 topics_data = pd.read_csv('data/dist_topic.csv')
 ################################################### FUNCTIONS ###################################################
-def draw_dist():
-    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', width = 800, height = 500)
+def draw_dist(data):
+    fig = px.histogram(data, x='date', y='count', template='plotly_white', width = 800, height = 500)
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Articles Count')
     fig.update_traces(xbins_size="M1")
@@ -97,7 +97,7 @@ elif choice == 'Analysis':
     day_date = pd.to_datetime(st.slider("Date to chose", min_value=min_ts, max_value=max_ts, value=max_ts))
     dist_articles_df = dist_articles_df[(dist_articles_df['date'] == day_date)]
     st.subheader('Articles distribution over time')
-    st.plotly_chart(draw_dist())
+    st.plotly_chart(draw_dist(dist_articles_df))
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = dist_bigram_df[:20]
