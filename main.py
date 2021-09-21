@@ -52,7 +52,7 @@ def load_bigram(min, max):
     df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['date'])
     df_bigram = df_bigram[(df_bigram["date"] >= min) & (df_bigram["date"] <= max)]
     df_bigram = df_bigram[:20]
-    mylist1 = []
+    mylist = []
     for string in df_bigram['cleaned_text']:
         mylist.append(string)
     mylist
