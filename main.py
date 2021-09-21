@@ -54,7 +54,8 @@ def draw_bigram(data):
 def load_bigram(min, max):
     df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['year'])
     df_bigram = df_bigram[(df_bigram["year"] >= min) & (df_bigram["year"] <= max)]
-    return df_bigram
+    data = df_bigram.sort_values(["count"], ascending=False)
+    return data
 
 def load_media(min, max):
     df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['date'])
@@ -114,6 +115,7 @@ elif choice == 'Analysis':
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = load_bigram(min_selection, max_selection)
+    data = data[:20]
     #col1.dataframe(data)
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
