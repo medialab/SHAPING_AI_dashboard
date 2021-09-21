@@ -52,7 +52,7 @@ def draw_bigram(data):
 
 def draw_media():
     df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['year'])
-    df_journals = df_journals[(df_journals["year"] >= 2011) & (df_journals["year"] <= 2015)]
+    #df_journals = df_journals[(df_journals["year"] >= 2011) & (df_journals["year"] <= 2015)]
     data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
     data = data[:20]
     fig = px.histogram(data, x='count', y='index', orientation='h', width = 500, height = 400)
