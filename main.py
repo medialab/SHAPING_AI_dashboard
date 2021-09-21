@@ -51,8 +51,8 @@ def draw_bigram(data):
     return fig
 
 def draw_media(min_selection, max_selection):
-    df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['date'])
-    df_journals = df_journals[(df_journals["date"] >= min_selection) & (df_journals["date"] <= max_selection)]
+    df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['year'])
+    df_journals = df_journals[(df_journals["year"] >= min_selection) & (df_journals["year"] <= max_selection)]
     data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
     data = data[:20]
     fig = px.histogram(data, x='count', y='index', orientation='h', width = 500, height = 400)
@@ -107,7 +107,7 @@ elif choice == 'Analysis':
     data = dist_bigram_df[:20]
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
-    col2.plotly_chart(draw_media(min_selection, max_selection))
+    col2.plotly_chart(draw_media(2011, 2015))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
