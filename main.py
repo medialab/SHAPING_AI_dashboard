@@ -5,6 +5,9 @@ import pandas as pd
 import plotly.express as px
 from PIL import Image
 import joblib
+import nltk  
+from nltk.tokenize import word_tokenize
+from nltk.probability import FreqDist
 ##################################### PAGE CONFIGURATION AND TITLE #################################################
 st.set_page_config(
     # Can be "centered" or "wide". In the future also "dashboard", etc.
@@ -50,6 +53,7 @@ def draw_bigram(data):
 
 def load_bigram(min, max):
     df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['date'])
+    stop_words = open('data/stopwords-fr.txt','r', encoding="utf-8").read().split('\n')
     df_bigram = df_bigram[(df_bigram["date"] >= min) & (df_bigram["date"] <= max)]
     df_bigram = df_bigram[:20]
     mylist = []
@@ -57,7 +61,6 @@ def load_bigram(min, max):
         mylist.append(string)
     mylist
     text = str(mylist)
-    stop_words = open('data/stopwords-fr.txt','r', encoding="utf-8").read().split('\n')
     txt_tokens = word_tokenize(text)
     txt_tokens = [word.lower() for word in txt_tokens if word.isalpha()]
     txt_tokens = [word for word in txt_tokens if not word in stop_words]
