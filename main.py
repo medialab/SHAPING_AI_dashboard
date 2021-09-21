@@ -53,17 +53,13 @@ def draw_bigram(data):
 
 def load_bigram(min, max):
     df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['date'])
-    stop_words = open('data/stopwords-fr.txt','r', encoding="utf-8").read().split('\n')
     df_bigram = df_bigram[(df_bigram["date"] >= min) & (df_bigram["date"] <= max)]
-    df_bigram = df_bigram[:20]
     mylist = []
     for string in df_bigram['cleaned_text']:
         mylist.append(string)
     mylist
     text = str(mylist)
     txt_tokens = word_tokenize(text)
-    txt_tokens = [word.lower() for word in txt_tokens if word.isalpha()]
-    txt_tokens = [word for word in txt_tokens if not word in stop_words]
     bigrams_series = (pd.Series(nltk.ngrams(txt_tokens, 2)).value_counts())
     bigrams = pd.DataFrame(bigrams_series.sort_values(ascending=False))
     bigrams = bigrams.reset_index().rename(columns={'index': 'bigram', 0:'count'})
