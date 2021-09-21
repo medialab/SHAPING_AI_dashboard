@@ -30,8 +30,7 @@ st.sidebar.info("Feel free to collaborate and comment on the work. The github li
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
 ################################################### DATA ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
-dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
-dist_media_df = pd.read_csv('data/dist_media.csv')
+#dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 lda_model = joblib.load('lda/lda_model.jl')
 vocab = joblib.load('lda/vocab.jl')
 topics_data = pd.read_csv('data/dist_topic.csv')
@@ -50,8 +49,32 @@ def draw_bigram(data):
     fig.update_yaxes(autorange="reversed")
     return fig
 
+def load_bigram(min, max):
+    df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['date'])
+    df_bigram = df_bigram[(df_bigram["date"] >= min) & (df_bigram["date"] <= max)]
+    data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
+    data = data[:20]
+    mylist1 = []
+    for string in data['cleaned_text']:
+        mylist.append(string)
+    mylist
+    text = str(mylist)
+    stop_words = open('data/stopwords-fr.txt','r', encoding="utf-8").read().split('\n')
+    txt_tokens = word_tokenize(text)
+    txt_tokens = [word.lower() for word in txt_tokens if word.isalpha()]
+    txt_tokens = [word for word in txt_tokens if not word in stop_words]
+    bigrams_series = (pd.Series(nltk.ngrams(txt_tokens1, 2)).value_counts())
+    bigrams = pd.DataFrame(bigrams_series.sort_values(ascending=False))
+    bigrams = bigrams.reset_index().rename(columns={'index': 'bigram', 0:'count'})
+    bigrams['bigram'] = bigrams['bigram'].astype(str)
+    bigrams['bigram'] = bigrams['bigram'].str.replace("(", '')
+    bigrams['bigram'] = bigrams['bigram'].str.replace(")", '')
+    bigrams['bigram'] = bigrams['bigram'].str.replace(",", '_')
+    bigrams['bigram'] = bigrams['bigram'].str.replace(" ", '')
+    bigrams['bigram'] = bigrams['bigram'].str.replace("'", '')
+    return bigrams
 
-def load_data(min, max):
+def load_media(min, max):
     df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['date'])
     df_journals = df_journals[(df_journals["date"] >= min) & (df_journals["date"] <= max)]
     data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
@@ -108,11 +131,10 @@ elif choice == 'Analysis':
     st.plotly_chart(draw_dist(dist_articles_df))
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
-    data = dist_bigram_df[:20]
+    data = load_bigram(min_selection, max_selection)
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
-    data = load_data(min_selection, max_selection)
-    #col2.dataframe(data)
+    data = load_media(min_selection, max_selection)
     col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
