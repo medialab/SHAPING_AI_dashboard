@@ -51,11 +51,11 @@ def draw_bigram(data):
     return fig
 
 
-def load_data():
-    df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['year'])
-    #df_journals = df_journals[(df_journals["year"] >= min) & (df_journals["year"] <= max)]
-    #data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
-    data = df_journals[:20]
+def load_data(min, max):
+    df_journals = pd.read_csv('data/df_journals.csv')
+    df_journals = df_journals[(df_journals["year"] >= min) & (df_journals["year"] <= max)]
+    data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
+    data = data[:20]
     return data
 
 def draw_media():
