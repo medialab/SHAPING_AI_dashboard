@@ -3,9 +3,11 @@ import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
 import plotly.express as px
-import matplotlib.pyplot as plt
 from PIL import Image
 import joblib
+import nltk  
+from nltk.tokenize import word_tokenize
+from nltk.probability import FreqDist
 ##################################### PAGE CONFIGURATION AND TITLE #################################################
 st.set_page_config(
     # Can be "centered" or "wide". In the future also "dashboard", etc.
@@ -30,14 +32,13 @@ st.sidebar.info("Feel free to collaborate and comment on the work. The github li
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
 ################################################### DATA ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
-dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
-dist_media_df = pd.read_csv('data/dist_media.csv')
+#dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
 lda_model = joblib.load('lda/lda_model.jl')
 vocab = joblib.load('lda/vocab.jl')
 topics_data = pd.read_csv('data/dist_topic.csv')
 ################################################### FUNCTIONS ###################################################
-def draw_dist():
-    fig = px.histogram(dist_articles_df, x='date', y='count', template='plotly_white', width = 800, height = 500)
+def draw_dist(data):
+    fig = px.histogram(data, x='date', y='count', template='plotly_white', width = 800, height = 500)
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Articles Count')
     fig.update_traces(xbins_size="M1")
@@ -50,8 +51,21 @@ def draw_bigram(data):
     fig.update_yaxes(autorange="reversed")
     return fig
 
+def load_bigram(min, max):
+    df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['year'])
+    df_bigram = df_bigram[(df_bigram["year"] >= min) & (df_bigram["year"] <= max)]
+    data = df_bigram.sort_values(["count"], ascending=False)
+    return data
+
+def load_media(min, max):
+    df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['date'])
+    df_journals = df_journals[(df_journals["date"] >= min) & (df_journals["date"] <= max)]
+    data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
+    data = data[:20]
+    return data
+
 def draw_media(data):
-    fig = px.histogram(data, x='count', y='index', orientation='h', width = 500, height = 400)
+    fig = px.histogram(data, x='count', y='media', orientation='h', width = 500, height = 400)
     fig.update_xaxes(title_text='Count of articles published')
     fig.update_yaxes(title_text='')
     fig.update_yaxes(autorange="reversed")
@@ -92,15 +106,20 @@ if choice == 'Home':
 elif choice == 'Analysis':
     st.title('Analysis')
     st.info('Choose the time period you want to analyse.')
-    year = st.slider('', min_value=2010, value=2020 ,max_value=2020)
+    min_ts = min(dist_articles_df['date']).to_pydatetime()
+    max_ts = max(dist_articles_df['date']).to_pydatetime()
+    min_selection, max_selection = pd.to_datetime(st.slider("Date to chose", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
+    dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
     st.subheader('Articles distribution over time')
-    st.plotly_chart(draw_dist())
+    st.plotly_chart(draw_dist(dist_articles_df))
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
-    data = dist_bigram_df[:20]
+    data = load_bigram(min_selection, max_selection)
+    data = data[:20]
+    #col1.dataframe(data)
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
-    data = dist_media_df[:20]
+    data = load_media(min_selection, max_selection)
     col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
@@ -168,5 +187,5 @@ elif choice == 'Terms Network':
     st.info(
         """The network represents the links (co-occurrence in the text) between the terms extracted from all corpora. The node's colors are allocated by the Louvain Method of community detection.""")
     components.iframe(
-        'https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2Fnetwork%2FBUNDLE%2520-%2520Shaping%2520AI%2520Network.json&color=cluster_label&lockNavigation=true&name=&ratio=1.3436928&showLink=true&size=weight&x=0.5308020842190102&y=0.3783239544591892',
+        'https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2Fnetwork%2FSHAPING-AI-NETWORK-BUNDLE.json&color=cluster_label&lockNavigation=true&name=&ratio=1.3436928&showLink=true&size=weight&x=0.5308020842190102&y=0.3783239544591892',
         width=800, height=500)
