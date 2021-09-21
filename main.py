@@ -51,10 +51,9 @@ def draw_bigram(data):
 def load_bigram(min, max):
     df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['date'])
     df_bigram = df_bigram[(df_bigram["date"] >= min) & (df_bigram["date"] <= max)]
-    data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
-    data = data[:20]
+    df_bigram = df_bigram[:20]
     mylist1 = []
-    for string in data['cleaned_text']:
+    for string in df_bigram['cleaned_text']:
         mylist.append(string)
     mylist
     text = str(mylist)
