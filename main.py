@@ -52,8 +52,8 @@ def draw_bigram(data):
 
 
 def load_data(min, max):
-    df_journals = pd.read_csv('data/df_journals.csv')
-    df_journals = df_journals[(df_journals["year"] >= min) & (df_journals["year"] <= max)]
+    df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['date'])
+    df_journals = df_journals[(df_journals["date"] >= min) & (df_journals["date"] <= max)]
     data = df_journals['journal_clean'].value_counts().to_frame('count').reset_index().rename(columns={'index': 'media'})
     data = data[:20]
     return data
@@ -111,7 +111,7 @@ elif choice == 'Analysis':
     data = dist_bigram_df[:20]
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
-    data = load_data()
+    data = load_data(min_selection, max_selection)
     col2.dataframe(data)
     #col2.plotly_chart(draw_media())
 elif choice == 'Topics':
