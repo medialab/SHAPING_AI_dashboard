@@ -112,8 +112,8 @@ elif choice == 'Analysis':
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
     data = load_data(min_selection, max_selection)
-    #col2.dataframe(data)
-    col2.plotly_chart(draw_media(data))
+    col2.dataframe(data)
+    #col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
