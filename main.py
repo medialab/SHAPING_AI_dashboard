@@ -61,7 +61,7 @@ def load_bigram(min, max):
     txt_tokens = word_tokenize(text)
     txt_tokens = [word.lower() for word in txt_tokens if word.isalpha()]
     txt_tokens = [word for word in txt_tokens if not word in stop_words]
-    bigrams_series = (pd.Series(nltk.ngrams(txt_tokens1, 2)).value_counts())
+    bigrams_series = (pd.Series(nltk.ngrams(txt_tokens, 2)).value_counts())
     bigrams = pd.DataFrame(bigrams_series.sort_values(ascending=False))
     bigrams = bigrams.reset_index().rename(columns={'index': 'bigram', 0:'count'})
     bigrams['bigram'] = bigrams['bigram'].astype(str)
