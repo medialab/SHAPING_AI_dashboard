@@ -54,22 +54,7 @@ def draw_bigram(data):
 def load_bigram(min, max):
     df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['date'])
     df_bigram = df_bigram[(df_bigram["date"] >= min) & (df_bigram["date"] <= max)]
-    mylist = []
-    for string in df_bigram['cleaned_text']:
-        mylist.append(string)
-    mylist
-    text = str(mylist)
-    txt_tokens = word_tokenize(text)
-    bigrams_series = (pd.Series(nltk.ngrams(txt_tokens, 2)).value_counts())
-    bigrams = pd.DataFrame(bigrams_series.sort_values(ascending=False))
-    bigrams = bigrams.reset_index().rename(columns={'index': 'bigram', 0:'count'})
-    bigrams['bigram'] = bigrams['bigram'].astype(str)
-    bigrams['bigram'] = bigrams['bigram'].str.replace("(", '')
-    bigrams['bigram'] = bigrams['bigram'].str.replace(")", '')
-    bigrams['bigram'] = bigrams['bigram'].str.replace(",", '_')
-    bigrams['bigram'] = bigrams['bigram'].str.replace(" ", '')
-    bigrams['bigram'] = bigrams['bigram'].str.replace("'", '')
-    return bigrams
+    return df_bigram
 
 def load_media(min, max):
     df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['date'])
@@ -128,8 +113,8 @@ elif choice == 'Analysis':
     st.plotly_chart(draw_dist(dist_articles_df))
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
-    data = load_bigram(min_selection, max_selection)
-    col1.dataframe(data)
+    #data = load_bigram(min_selection, max_selection)
+    #col1.dataframe(data)
     #col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
     data = load_media(min_selection, max_selection)
