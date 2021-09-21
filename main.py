@@ -58,7 +58,7 @@ def load_data(min, max):
     data = data[:20]
     return data
 
-def draw_media():
+def draw_media(data):
     fig = px.histogram(data, x='count', y='index', orientation='h', width = 500, height = 400)
     fig.update_xaxes(title_text='Count of articles published')
     fig.update_yaxes(title_text='')
