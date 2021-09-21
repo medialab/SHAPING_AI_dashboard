@@ -5,9 +5,6 @@ import pandas as pd
 import plotly.express as px
 from PIL import Image
 import joblib
-import nltk  
-from nltk.tokenize import word_tokenize
-from nltk.probability import FreqDist
 ##################################### PAGE CONFIGURATION AND TITLE #################################################
 st.set_page_config(
     # Can be "centered" or "wide". In the future also "dashboard", etc.
@@ -115,8 +112,7 @@ elif choice == 'Analysis':
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = load_bigram(min_selection, max_selection)
-    data = data[:20]
-    #col1.dataframe(data)
+    #data = data[:20]
     col1.plotly_chart(draw_bigram(data))
     col2.subheader('Main Media actors')
     data = load_media(min_selection, max_selection)
