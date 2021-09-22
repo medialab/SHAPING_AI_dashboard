@@ -52,6 +52,7 @@ def load_bigram(min, max):
     df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['year'])
     df_bigram = df_bigram[(df_bigram["year"] >= min) & (df_bigram["year"] <= max)]
     data = df_bigram.sort_values(["count"], ascending=False)
+    data = data[['bigram', "count"]].sum()
     return data
 
 def load_media(min, max):
