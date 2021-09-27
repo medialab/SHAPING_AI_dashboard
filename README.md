@@ -16,11 +16,11 @@ pip install -r requirements.txt
 
 
 ## Data 
-<code>dist_articles.csv</code>: distribution of the articles over 10 years period
+<code>dist_articles.csv</code>: distribution of the articles over time
 
-<code>dist_media</code>: distribution of the media and published articles
+<code>df_journals.csv</code>: distribution of the media and published articles over time
 
-<code>dist_bigram</code>: distribution of the bigrams count
+<code>df_bigrams.csv</code>: distribution of the bigrams count over time
 
 <code>dist_topic.csv</code>: distribution of the topics over time
 
