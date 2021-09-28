@@ -22,7 +22,7 @@ choice = st.sidebar.radio("",('Home', 'Analysis', 'Topics', 'Terms Network'))
 st.sidebar.title("About")
 st.sidebar.info(
     """
-    This dashboard will present the exploratory analysis of the French media discourse around AI from 2011 to 2021.
+    This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.
     """
 )
 st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found "
