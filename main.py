@@ -69,10 +69,10 @@ def draw_media(data):
     fig.update_traces(xbins_size="M1")
     return fig
 
-def draw_topics(index, num):
+def draw_topics(index):
     comp = lda_model.components_[index]
     vocab_comp = zip(vocab, comp)
-    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:num]
+    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:10]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
     fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 500, height = 400)
     fig.update_xaxes(title_text='Term frequency')
@@ -123,30 +123,28 @@ elif choice == 'Topics':
     st.title("Top words discussed in each topic")
     st.subheader('Choose Topic')
     option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
-    st.subheader("Number of results")
-    option_3_s = st.slider("", 5, 10)
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
     if option_2_s == '1':
-        col1.plotly_chart(draw_topics(0, option_3_s))
+        col1.plotly_chart(draw_topics(0))
     elif option_2_s == '2':
-        col1.plotly_chart(draw_topics(1, option_3_s))
+        col1.plotly_chart(draw_topics(1))
     elif option_2_s == '3':
-        col1.plotly_chart(draw_topics(2, option_3_s))
+        col1.plotly_chart(draw_topics(2))
     elif option_2_s == '4':
-        col1.plotly_chart(draw_topics(3, option_3_s))
+        col1.plotly_chart(draw_topics(3))
     elif option_2_s == '5':
-        col1.plotly_chart(draw_topics(4, option_3_s))
+        col1.plotly_chart(draw_topics(4))
     elif option_2_s == '6':
-         col1.plotly_chart(draw_topics(5, option_3_s))
+         col1.plotly_chart(draw_topics(5))
     elif option_2_s == '7':
-         col1.plotly_chart(draw_topics(6, option_3_s))
+         col1.plotly_chart(draw_topics(6))
     elif option_2_s == '8':
-         col1.plotly_chart(draw_topics(8, option_3_s))
+         col1.plotly_chart(draw_topics(8))
     elif option_2_s == '9':
-         col1.plotly_chart(draw_topics(8, option_3_s))
+         col1.plotly_chart(draw_topics(8))
     elif option_2_s == '10':
-         col1.plotly_chart(draw_topics(9, option_3_s))
+         col1.plotly_chart(draw_topics(9))
     col2.subheader('Topic distribution over time')
     if option_2_s == '1':
         topics = topics_data[topics_data['topic'] == 0]
