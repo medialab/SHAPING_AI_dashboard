@@ -7,12 +7,10 @@ from PIL import Image
 import joblib
 ##################################### PAGE CONFIGURATION AND TITLE #################################################
 st.set_page_config(
-    # Can be "centered" or "wide". In the future also "dashboard", etc.
     layout="wide",
-    initial_sidebar_state="expanded",  # Can be "auto", "expanded", "collapsed"
-    # String or None. Strings get appended with "• Streamlit".
-    page_title="SHAPING_AI",
-    page_icon=None,  # String, anything supported by st.image, or None.
+    initial_sidebar_state="expanded",
+    page_title="SHAPING AI",
+    page_icon=None,
 )
 ################################################### SIDEBAR ###################################################
 image = Image.open('images/logo_medialab.png')
