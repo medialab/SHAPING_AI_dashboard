@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ```
 
 ## Text preprocessing
-<code>data_wrangling.ipynb</code>: Python code with data preprocessing, features engineering, text cleaning and visualisations
+<code>DATA-WRANGLING.ipynb</code>: Python code with data preprocessing, features engineering, text cleaning and visualisations
 
 
 ## Data 

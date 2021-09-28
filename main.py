@@ -7,12 +7,10 @@ from PIL import Image
 import joblib
 ##################################### PAGE CONFIGURATION AND TITLE #################################################
 st.set_page_config(
-    # Can be "centered" or "wide". In the future also "dashboard", etc.
     layout="wide",
-    initial_sidebar_state="expanded",  # Can be "auto", "expanded", "collapsed"
-    # String or None. Strings get appended with "• Streamlit".
-    page_title="SHAPING_AI",
-    page_icon=None,  # String, anything supported by st.image, or None.
+    initial_sidebar_state="expanded",
+    page_title="SHAPING AI",
+    page_icon=None,
 )
 ################################################### SIDEBAR ###################################################
 image = Image.open('images/logo_medialab.png')
@@ -22,10 +20,10 @@ choice = st.sidebar.radio("",('Home', 'Analysis', 'Topics', 'Terms Network'))
 st.sidebar.title("About")
 st.sidebar.info(
     """
-    This app is Open Source dashboard.
+    This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.
     """
 )
-st.sidebar.info("Feel free to collaborate and comment on the work. The github link can be found "
+st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found "
                 "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
 ################################################### DATA ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
@@ -69,10 +67,10 @@ def draw_media(data):
     fig.update_traces(xbins_size="M1")
     return fig
 
-def draw_topics(index, num):
+def draw_topics(index):
     comp = lda_model.components_[index]
     vocab_comp = zip(vocab, comp)
-    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:num]
+    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:10]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
     fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 500, height = 400)
     fig.update_xaxes(title_text='Term frequency')
@@ -90,22 +88,20 @@ def draw_dist_topic(data):
 ################################################### MODULE CHOICE ###################################################
 if choice == 'Home':
     st.title("SHAPING AI MEDIA DASHBOARD")
-    st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigates the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
-    st.info('This dashboard will present the exploratory analysis of the Freanch media discourse aroud AI from 2011 to 2021.')
+    st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
     st.title('Data')
     st.markdown('### Europresse Database')
-    st.markdown('Corpus was extracted using search by keywords in title and lead paragraph of articles. National and regional French media publishing in French language. Time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
+    st.markdown('Corpus was extracted using search by keywords in the title and lead paragraph of articles. National and regional French media publishing in French language. The time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
     st.info(' Search queries'
             ': "*intelligence artificielle*" OR "*IA*" OR "*algorithme*" OR "*apprentissage profond*" OR "*apprentissage machine*" OR "*réseau de neurone*" OR "*machine learning*" OR "*deep learning*" OR "*neural network*"')
     st.markdown('### Text Corpus')
-    st.markdown('Data wrangling included removal of missing values, dublicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. Total number of articles in the final corpus is 48411'
-                '.')
+    st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 47572.')
 elif choice == 'Analysis':
     st.title('Analysis')
-    st.info('Choose the time period you want to analyse.')
+    st.subheader('Choose the time period you want to analyse:')
     min_ts = min(dist_articles_df['date']).to_pydatetime()
     max_ts = max(dist_articles_df['date']).to_pydatetime()
-    min_selection, max_selection = pd.to_datetime(st.slider("Date to chose", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
+    min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
     dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
     st.subheader('Articles distribution over time')
     st.plotly_chart(draw_dist(dist_articles_df))
@@ -120,33 +116,30 @@ elif choice == 'Analysis':
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
-    st.title("Top words discussed in each topic")
-    st.subheader('Choose Topic')
-    option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
-    st.subheader("Number of results")
-    option_3_s = st.slider("", 5, 10)
+    st.subheader('Choose the topic you want to analyse:')
+    option_2_s = st.selectbox('', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
     if option_2_s == '1':
-        col1.plotly_chart(draw_topics(0, option_3_s))
+        col1.plotly_chart(draw_topics(0))
     elif option_2_s == '2':
-        col1.plotly_chart(draw_topics(1, option_3_s))
+        col1.plotly_chart(draw_topics(1))
     elif option_2_s == '3':
-        col1.plotly_chart(draw_topics(2, option_3_s))
+        col1.plotly_chart(draw_topics(2))
     elif option_2_s == '4':
-        col1.plotly_chart(draw_topics(3, option_3_s))
+        col1.plotly_chart(draw_topics(3))
     elif option_2_s == '5':
-        col1.plotly_chart(draw_topics(4, option_3_s))
+        col1.plotly_chart(draw_topics(4))
     elif option_2_s == '6':
-         col1.plotly_chart(draw_topics(5, option_3_s))
+         col1.plotly_chart(draw_topics(5))
     elif option_2_s == '7':
-         col1.plotly_chart(draw_topics(6, option_3_s))
+         col1.plotly_chart(draw_topics(6))
     elif option_2_s == '8':
-         col1.plotly_chart(draw_topics(8, option_3_s))
+         col1.plotly_chart(draw_topics(8))
     elif option_2_s == '9':
-         col1.plotly_chart(draw_topics(8, option_3_s))
+         col1.plotly_chart(draw_topics(8))
     elif option_2_s == '10':
-         col1.plotly_chart(draw_topics(9, option_3_s))
+         col1.plotly_chart(draw_topics(9))
     col2.subheader('Topic distribution over time')
     if option_2_s == '1':
         topics = topics_data[topics_data['topic'] == 0]
