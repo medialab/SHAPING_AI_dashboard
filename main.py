@@ -22,7 +22,7 @@ choice = st.sidebar.radio("",('Home', 'Analysis', 'Topics', 'Terms Network'))
 st.sidebar.title("About")
 st.sidebar.info(
     """
-    This app is Open Source dashboard.
+    'This dashboard will present the exploratory analysis of the French media discourse around AI from 2011 to 2021.'
     """
 )
 st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found "
@@ -91,15 +91,13 @@ def draw_dist_topic(data):
 if choice == 'Home':
     st.title("SHAPING AI MEDIA DASHBOARD")
     st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
-    st.info('This dashboard will present the exploratory analysis of the French media discourse around AI from 2011 to 2021.')
     st.title('Data')
     st.markdown('### Europresse Database')
     st.markdown('Corpus was extracted using search by keywords in the title and lead paragraph of articles. National and regional French media publishing in French language. The time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
     st.info(' Search queries'
             ': "*intelligence artificielle*" OR "*IA*" OR "*algorithme*" OR "*apprentissage profond*" OR "*apprentissage machine*" OR "*réseau de neurone*" OR "*machine learning*" OR "*deep learning*" OR "*neural network*"')
     st.markdown('### Text Corpus')
-    st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 48411.'
-                '.')
+    st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 47572.')
 elif choice == 'Analysis':
     st.title('Analysis')
     st.info('Choose the time period you want to analyse.')
