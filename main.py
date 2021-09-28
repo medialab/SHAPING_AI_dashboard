@@ -100,7 +100,7 @@ if choice == 'Home':
     st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 47572.')
 elif choice == 'Analysis':
     st.title('Analysis')
-    st.info('Choose the time period you want to analyse:')
+    st.subheader('Choose the time period you want to analyse:')
     min_ts = min(dist_articles_df['date']).to_pydatetime()
     max_ts = max(dist_articles_df['date']).to_pydatetime()
     min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
@@ -118,8 +118,8 @@ elif choice == 'Analysis':
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
-    st.subheader('Choose Topic')
-    option_2_s = st.selectbox('Topic', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
+    st.subheader('Choose the topic you want to analyse:')
+    option_2_s = st.selectbox('', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
     if option_2_s == '1':
