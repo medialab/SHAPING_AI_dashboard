@@ -100,14 +100,14 @@ elif choice == 'Analysis':
     max_ts = max(dist_articles_df['date']).to_pydatetime()
     min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
     dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
-    col1, col2, col3 = st.columns((2, 1, 1))
+    col1, col2, col3 = st.columns((3, 1, 1))
     col1.subheader('Display articles distribution over time')
     col1.plotly_chart(draw_dist(dist_articles_df))
     col2.subheader('Most frequent words')
     data = load_bigram(min_selection, max_selection)
     data = data[:20]
     col2.plotly_chart(draw_bigram(data))
-    col2.subheader('Main Media actors')
+    col3.subheader('Main Media actors')
     data = load_media(min_selection, max_selection)
     col3.plotly_chart(draw_media(data))
 elif choice == 'Topics':
