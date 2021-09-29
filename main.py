@@ -149,7 +149,7 @@ elif choice == 'Topics':
     topics = topics_data[topics_data['topic'] == option_2_s]
     col2.plotly_chart(draw_dist_topic(topics))
     st.subheader('Select two topics to compare:')
-    option_3_s, option_4_s, option_5_s = st.multiselect(' ', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], index=['Education', 'Enterprises', 'Legality'])
+    option_3_s, option_4_s, option_5_s = st.multiselect(' ', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default=['Education', 'Enterprises', 'Legality'])
     topics_compare = topics_data[(topics_data['topic']  == option_3_s) | (topics_data['topic']  == option_4_s) | (topics_data['topic']  == option_5_s)]
     st.plotly_chart(draw_topic_compare(topics_compare))
 elif choice == 'Terms Network':
