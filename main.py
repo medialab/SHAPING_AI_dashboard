@@ -100,16 +100,16 @@ elif choice == 'Analysis':
     max_ts = max(dist_articles_df['date']).to_pydatetime()
     min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
     dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
-    col1, col2, col3 = st.columns((3, 1, 1))
-    col1.subheader('Display articles distribution over time')
-    col1.plotly_chart(draw_dist(dist_articles_df))
-    col2.subheader('Most frequent words')
+    st.subheader('Display articles distribution over time')
+    st.plotly_chart(draw_dist(dist_articles_df))
+    col1, col2 = st.columns(2)
+    col1.subheader('Most frequent words')
     data = load_bigram(min_selection, max_selection)
     data = data[:20]
-    col2.plotly_chart(draw_bigram(data))
-    col3.subheader('Main Media actors')
+    col1.plotly_chart(draw_bigram(data))
+    col2.subheader('Main Media actors')
     data = load_media(min_selection, max_selection)
-    col3.plotly_chart(draw_media(data))
+    col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
