@@ -101,8 +101,6 @@ elif choice == 'Analysis':
     min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
     dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
     my_expander = st.expander()
-    my_expander.write('Hello there!')
-    clicked = my_expander.button('Click me!')
     my_expander.subheader('Articles distribution over time')
     my_expander.plotly_chart(draw_dist(dist_articles_df))
     col1, col2 = st.columns(2)
