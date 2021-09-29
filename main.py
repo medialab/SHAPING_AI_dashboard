@@ -121,8 +121,8 @@ elif choice == 'Analysis':
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
-    st.subheader('Choose the topic you want to analyse:')
-    option_2_s = st.selectbox('', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
+    st.subheader('Topics Overview')
+    option_2_s = st.selectbox('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], help='Choose the topic you want to analyse')
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
     if option_2_s == 'History':
@@ -149,7 +149,7 @@ elif choice == 'Topics':
     topics = topics_data[topics_data['topic'] == option_2_s]
     col2.plotly_chart(draw_dist_topic(topics))
     st.subheader('Topics comparison')
-    option_3_s, option_4_s = st.multiselect(' ', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default=['Education', 'Legality'], help='Select two topics to compare.')
+    option_3_s, option_4_s = st.multiselect('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default=['Education', 'Legality'], help='Select two topics to compare')
     topics_compare = topics_data[(topics_data['topic']  == option_3_s) | (topics_data['topic']  == option_4_s)]
     st.plotly_chart(draw_topic_compare(topics_compare))
 elif choice == 'Terms Network':
