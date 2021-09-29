@@ -16,15 +16,10 @@ st.set_page_config(
 image = Image.open('images/logo_medialab.png')
 st.sidebar.image(image)
 st.sidebar.title('Navigate')
-choice = st.sidebar.radio("",('Home', 'Analysis', 'Topics', 'Terms Network'))
-st.sidebar.title("About")
-st.sidebar.info(
-    """
-    This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.
-    """
-)
-st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found "
-                "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
+choice = st.sidebar.radio("",('Home', 'Data', 'Analysis', 'Topics', 'Terms Network'))
+st.sidebar.title("About this app")
+st.sidebar.info("This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021. Feel free to collaborate and comment on the work. The Github link can be found "
+                "[here](https://github.com/yuliianikolaenko/shaping-ai-dashboard).")
 ################################################### DATA ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
 #dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
@@ -89,7 +84,8 @@ def draw_dist_topic(data):
 if choice == 'Home':
     st.title("SHAPING AI MEDIA DASHBOARD")
     st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
-    st.title('Data')
+elif choice == 'Data':
+    st.title("Data")
     st.markdown('### Europresse Database')
     st.markdown('Corpus was extracted using search by keywords in the title and lead paragraph of articles. National and regional French media publishing in French language. The time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
     st.info(' Search queries'
