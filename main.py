@@ -102,11 +102,10 @@ elif choice == 'Data':
     st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 47572.')
 elif choice == 'Analysis':
     st.title('Analysis')
-    st.info('Analysis')
-    st.subheader('Choose the time period you want to analyse:')
+    st.info('ADD HERE')
     min_ts = min(dist_articles_df['date']).to_pydatetime()
     max_ts = max(dist_articles_df['date']).to_pydatetime()
-    min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
+    min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts], help='Choose the time period you want to analyse'))
     dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
     st.subheader('Display articles distribution over time')
     st.plotly_chart(draw_dist(dist_articles_df))
