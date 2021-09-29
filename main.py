@@ -168,6 +168,9 @@ elif choice == 'Topics':
     elif option_2_s == 'Legality':
          topics = topics_data[topics_data['topic'] == 9]
          col2.plotly_chart(draw_dist_topic(topics))
+    st.subheader('Compare topics')
+    option_3_s = st.multiselect('', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
+    st.plotly_chart(draw_dist_topic(topics))
 elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
