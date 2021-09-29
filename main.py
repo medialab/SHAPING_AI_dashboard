@@ -16,15 +16,10 @@ st.set_page_config(
 image = Image.open('images/logo_medialab.png')
 st.sidebar.image(image)
 st.sidebar.title('Navigate')
-choice = st.sidebar.radio("",('Home', 'Analysis', 'Topics', 'Terms Network'))
-st.sidebar.title("About")
-st.sidebar.info(
-    """
-    This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.
-    """
-)
-st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found "
-                "[here](https://github.com/yuliianikolaenko/SHAPING_AI_dashboard).")
+choice = st.sidebar.radio("",('Home', 'Data', 'Analysis', 'Topics', 'Terms Network'))
+st.sidebar.title("About this app")
+st.sidebar.info("This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021. Feel free to collaborate and comment on the work. The Github link can be found "
+                "[here](https://github.com/yuliianikolaenko/shaping-ai-dashboard).")
 ################################################### DATA ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
 #dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
@@ -70,7 +65,7 @@ def draw_media(data):
 def draw_topics(index):
     comp = lda_model.components_[index]
     vocab_comp = zip(vocab, comp)
-    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:10]
+    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:15]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
     fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 500, height = 400)
     fig.update_xaxes(title_text='Term frequency')
@@ -85,11 +80,21 @@ def draw_dist_topic(data):
     fig.update_yaxes(title_text='Topic count (normalized)')
     fig.update_layout(showlegend=False)
     return fig
+
+def draw_topic_compare(data):
+    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 800, height = 500)
+    fig.update_traces(mode='markers+lines')
+    fig.update_xaxes(title_text='Year')
+    fig.update_yaxes(title_text='Topic count (normalized)')
+    fig.update_layout(showlegend=True)
+    return fig
+
 ################################################### MODULE CHOICE ###################################################
 if choice == 'Home':
-    st.title("SHAPING AI MEDIA DASHBOARD")
+    st.title("SHAPING AI DASHBOARD")
     st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
-    st.title('Data')
+elif choice == 'Data':
+    st.title("Data")
     st.markdown('### Europresse Database')
     st.markdown('Corpus was extracted using search by keywords in the title and lead paragraph of articles. National and regional French media publishing in French language. The time period of 10 years from 1 January 2011 to 1 January 2021. Metadata included such variables as _content_ (text of the article), _author_ (name of the author), _title_ (title of the article), _journal_ (name of the media), _date_ (date of the article publishing).')
     st.info(' Search queries'
@@ -98,79 +103,52 @@ if choice == 'Home':
     st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 47572.')
 elif choice == 'Analysis':
     st.title('Analysis')
-    st.subheader('Choose the time period you want to analyse:')
+    st.info('ADD HERE')
     min_ts = min(dist_articles_df['date']).to_pydatetime()
     max_ts = max(dist_articles_df['date']).to_pydatetime()
-    min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
+    min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts], help='Choose the time period you want to analyse'))
     dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
-    st.subheader('Articles distribution over time')
+    st.subheader('Display articles distribution over time')
     st.plotly_chart(draw_dist(dist_articles_df))
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = load_bigram(min_selection, max_selection)
-    data = data[:20]
-    col1.plotly_chart(draw_bigram(data))
+    col1.plotly_chart(draw_bigram(data[:20]))
     col2.subheader('Main Media actors')
     data = load_media(min_selection, max_selection)
     col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
-    st.subheader('Choose the topic you want to analyse:')
-    option_2_s = st.selectbox('', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])
+    st.subheader('Overview')
+    option_2_s = st.selectbox('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], help='Choose the topic you want to analyse')
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
-    if option_2_s == '1':
+    if option_2_s == 'History':
         col1.plotly_chart(draw_topics(0))
-    elif option_2_s == '2':
+    elif option_2_s == 'Investments':
         col1.plotly_chart(draw_topics(1))
-    elif option_2_s == '3':
+    elif option_2_s == 'Healthcare':
         col1.plotly_chart(draw_topics(2))
-    elif option_2_s == '4':
+    elif option_2_s == 'Robotics':
         col1.plotly_chart(draw_topics(3))
-    elif option_2_s == '5':
+    elif option_2_s == 'Companies':
         col1.plotly_chart(draw_topics(4))
-    elif option_2_s == '6':
+    elif option_2_s == 'Market&Clients':
          col1.plotly_chart(draw_topics(5))
-    elif option_2_s == '7':
+    elif option_2_s == 'Research':
          col1.plotly_chart(draw_topics(6))
-    elif option_2_s == '8':
+    elif option_2_s == 'Education':
+         col1.plotly_chart(draw_topics(7))
+    elif option_2_s == 'Enterprises':
          col1.plotly_chart(draw_topics(8))
-    elif option_2_s == '9':
-         col1.plotly_chart(draw_topics(8))
-    elif option_2_s == '10':
+    elif option_2_s == 'Legality':
          col1.plotly_chart(draw_topics(9))
     col2.subheader('Topic distribution over time')
-    if option_2_s == '1':
-        topics = topics_data[topics_data['topic'] == 0]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '2':
-        topics = topics_data[topics_data['topic'] == 1]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '3':
-        topics = topics_data[topics_data['topic'] == 2]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '4':
-        topics = topics_data[topics_data['topic'] == 3]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '5':
-        topics = topics_data[topics_data['topic'] == 4]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '6':
-         topics = topics_data[topics_data['topic'] == 5]
-         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '7':
-         topics = topics_data[topics_data['topic'] == 6]
-         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '8':
-         topics = topics_data[topics_data['topic'] == 8]
-         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '9':
-         topics = topics_data[topics_data['topic'] == 8]
-         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '10':
-         topics = topics_data[topics_data['topic'] == 9]
-         col2.plotly_chart(draw_dist_topic(topics))
+    col2.plotly_chart(draw_dist_topic(topics_data[topics_data['topic'] == option_2_s]))
+    st.subheader('Comparison')
+    option_3_s = st.multiselect('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default= option_2_s, help='Select the topics to compare')
+    st.plotly_chart(draw_topic_compare(topics_data[topics_data.topic.isin(option_3_s)]))
 elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
