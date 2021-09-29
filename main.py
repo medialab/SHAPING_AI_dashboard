@@ -113,28 +113,28 @@ elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
     st.subheader('Choose the topic you want to analyse:')
-    option_2_s = st.selectbox('', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Enterprises', '9', 'Legality)'])
+    option_2_s = st.selectbox('', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Enterprises', '9', 'Legality'])
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
-    if option_2_s == '1':
+    if option_2_s == 'History':
         col1.plotly_chart(draw_topics(0))
-    elif option_2_s == '2':
+    elif option_2_s == 'Investments':
         col1.plotly_chart(draw_topics(1))
-    elif option_2_s == '3':
+    elif option_2_s == 'Healthcare':
         col1.plotly_chart(draw_topics(2))
-    elif option_2_s == '4':
+    elif option_2_s == 'Robotics':
         col1.plotly_chart(draw_topics(3))
-    elif option_2_s == '5':
+    elif option_2_s == 'Companies':
         col1.plotly_chart(draw_topics(4))
-    elif option_2_s == '6':
+    elif option_2_s == 'Market&Clients':
          col1.plotly_chart(draw_topics(5))
-    elif option_2_s == '7':
+    elif option_2_s == 'Research':
          col1.plotly_chart(draw_topics(6))
-    elif option_2_s == '8':
+    elif option_2_s == 'Enterprises':
          col1.plotly_chart(draw_topics(8))
     elif option_2_s == '9':
          col1.plotly_chart(draw_topics(8))
-    elif option_2_s == '10':
+    elif option_2_s == 'Legality':
          col1.plotly_chart(draw_topics(9))
     col2.subheader('Topic distribution over time')
     if option_2_s == '1':
