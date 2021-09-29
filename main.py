@@ -149,9 +149,9 @@ elif choice == 'Topics':
     topics = topics_data[topics_data['topic'] == option_2_s]
     col2.plotly_chart(draw_dist_topic(topics))
     st.subheader('Select two topics to compare:')
-    option_3_s = st.selectbox('h', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
-    #topics_compare = topics_data[topics_data['topic']  == option_3_s]
-    #st.plotly_chart(draw_topic_compare(topics_compare))
+    option_3_s = st.selectbox(' ', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
+    topics_compare = topics_data[topics_data['topic']  == option_3_s]
+    st.plotly_chart(draw_topic_compare(topics_compare))
 elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
