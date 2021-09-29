@@ -94,6 +94,7 @@ elif choice == 'Data':
     st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 47572.')
 elif choice == 'Analysis':
     st.title('Analysis')
+    st.info('Analysis')
     st.subheader('Choose the time period you want to analyse:')
     min_ts = min(dist_articles_df['date']).to_pydatetime()
     max_ts = max(dist_articles_df['date']).to_pydatetime()
