@@ -147,8 +147,8 @@ elif choice == 'Topics':
     col2.subheader('Topic distribution over time')
     col2.plotly_chart(draw_dist_topic(topics_data[topics_data['topic'] == option_2_s]))
     st.subheader('Comparison')
-    option_3_s, option_4_s = st.multiselect('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default=['Education', 'Legality'], help='Select 2 topics to compare')
-    st.plotly_chart(draw_topic_compare(topics_data[(topics_data['topic']  == option_3_s) | (topics_data['topic']  == option_4_s)]))
+    option_3_s = st.multiselect('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], help='Select 2 topics to compare')
+    st.plotly_chart(draw_topic_compare(topics_data[topics_data.topic.isin(option_3_s)]))
 elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
