@@ -98,10 +98,11 @@ elif choice == 'Analysis':
     st.subheader('Choose the time period you want to analyse:')
     min_ts = min(dist_articles_df['date']).to_pydatetime()
     max_ts = max(dist_articles_df['date']).to_pydatetime()
-    min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
+    col1, col2 = st.columns(2)
+    min_selection, max_selection = pd.to_datetime(col1.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
     dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
-    with st.expander('Display articles distribution over time'):
-        st.plotly_chart(draw_dist(dist_articles_df))
+    col2.subheader('Display articles distribution over time')
+    col2.plotly_chart(draw_dist(dist_articles_df))
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = load_bigram(min_selection, max_selection)
@@ -114,7 +115,7 @@ elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
     st.subheader('Choose the topic you want to analyse:')
-    option_2_s = st.multiselect('', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
+    option_2_s = st.selectbox('', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
     if option_2_s == 'History':
