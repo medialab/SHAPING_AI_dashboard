@@ -146,36 +146,8 @@ elif choice == 'Topics':
     elif option_2_s == 'Legality':
          col1.plotly_chart(draw_topics(9))
     col2.subheader('Topic distribution over time')
-    if option_2_s == 'History':
-        topics = topics_data[topics_data['topic'] == 0]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == 'Investments':
-        topics = topics_data[topics_data['topic'] == 1]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == 'Healthcare':
-        topics = topics_data[topics_data['topic'] == 2]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == 'Robotics':
-        topics = topics_data[topics_data['topic'] == 3]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == 'Companies':
-        topics = topics_data[topics_data['topic'] == 4]
-        col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == 'Market&Clients':
-         topics = topics_data[topics_data['topic'] == 5]
-         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == 'Research':
-         topics = topics_data[topics_data['topic'] == 6]
-         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == 'Education':
-         topics = topics_data[topics_data['topic'] == 7]
-         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == 'Enterprises':
-         topics = topics_data[topics_data['topic'] == 8]
-         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == 'Legality':
-         topics = topics_data[topics_data['topic'] == 9]
-         col2.plotly_chart(draw_dist_topic(topics))
+    topics = topics_data[topics_data['topic'] == option_2_s]
+    col2.plotly_chart(draw_dist_topic(topics))
     st.subheader('Select two topics to compare:')
     option_3_s = st.selectbox('', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
     topics_data = topics_data[topics_data.topic == option_3_s]
