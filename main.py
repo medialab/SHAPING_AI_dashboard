@@ -65,7 +65,7 @@ def draw_media(data):
 def draw_topics(index):
     comp = lda_model.components_[index]
     vocab_comp = zip(vocab, comp)
-    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:10]
+    sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:15]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
     fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 500, height = 400)
     fig.update_xaxes(title_text='Term frequency')
@@ -130,41 +130,41 @@ elif choice == 'Topics':
          col1.plotly_chart(draw_topics(5))
     elif option_2_s == 'Research':
          col1.plotly_chart(draw_topics(6))
-    elif option_2_s == 'Enterprises':
+    elif option_2_s == 'Education':
          col1.plotly_chart(draw_topics(7))
-    elif option_2_s == '9':
+    elif option_2_s == 'Enterprises':
          col1.plotly_chart(draw_topics(8))
     elif option_2_s == 'Legality':
          col1.plotly_chart(draw_topics(9))
     col2.subheader('Topic distribution over time')
-    if option_2_s == '1':
+    if option_2_s == 'History':
         topics = topics_data[topics_data['topic'] == 0]
         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '2':
+    elif option_2_s == 'Investments':
         topics = topics_data[topics_data['topic'] == 1]
         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '3':
+    elif option_2_s == 'Healthcare':
         topics = topics_data[topics_data['topic'] == 2]
         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '4':
+    elif option_2_s == 'Robotics':
         topics = topics_data[topics_data['topic'] == 3]
         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '5':
+    elif option_2_s == 'Companies':
         topics = topics_data[topics_data['topic'] == 4]
         col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '6':
+    elif option_2_s == 'Market&Clients':
          topics = topics_data[topics_data['topic'] == 5]
          col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '7':
+    elif option_2_s == 'Research':
          topics = topics_data[topics_data['topic'] == 6]
          col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '8':
+    elif option_2_s == 'Education':
          topics = topics_data[topics_data['topic'] == 7]
          col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '9':
+    elif option_2_s == 'Enterprises':
          topics = topics_data[topics_data['topic'] == 8]
          col2.plotly_chart(draw_dist_topic(topics))
-    elif option_2_s == '10':
+    elif option_2_s == 'Legality':
          topics = topics_data[topics_data['topic'] == 9]
          col2.plotly_chart(draw_dist_topic(topics))
 elif choice == 'Terms Network':
