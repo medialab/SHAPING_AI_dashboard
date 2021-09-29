@@ -112,8 +112,7 @@ elif choice == 'Analysis':
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
     data = load_bigram(min_selection, max_selection)
-    data = data[:20]
-    col1.plotly_chart(draw_bigram(data))
+    col1.plotly_chart(draw_bigram(data[:20]))
     col2.subheader('Main Media actors')
     data = load_media(min_selection, max_selection)
     col2.plotly_chart(draw_media(data))
@@ -145,11 +144,9 @@ elif choice == 'Topics':
     elif option_2_s == 'Legality':
          col1.plotly_chart(draw_topics(9))
     col2.subheader('Topic distribution over time')
-    topics = topics_data[topics_data['topic'] == option_2_s]
-    col2.plotly_chart(draw_dist_topic(topics))
+    col2.plotly_chart(draw_dist_topic(topics_data[topics_data['topic'] == option_2_s]))
     st.subheader('Comparison')
     option_3_s, option_4_s = st.multiselect('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default=['Education', 'Legality'], help='Select 2 topics to compare')
-    #topics_compare = topics_data[(topics_data['topic']  == option_3_s) | (topics_data['topic']  == option_4_s)]
     st.plotly_chart(draw_topic_compare(topics_data[(topics_data['topic']  == option_3_s) | (topics_data['topic']  == option_4_s)]))
 elif choice == 'Terms Network':
     st.title("Terms Network")
