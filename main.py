@@ -131,7 +131,7 @@ elif choice == 'Topics':
     elif option_2_s == 'Research':
          col1.plotly_chart(draw_topics(6))
     elif option_2_s == 'Enterprises':
-         col1.plotly_chart(draw_topics(8))
+         col1.plotly_chart(draw_topics(7))
     elif option_2_s == '9':
          col1.plotly_chart(draw_topics(8))
     elif option_2_s == 'Legality':
