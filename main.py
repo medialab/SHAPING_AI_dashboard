@@ -88,9 +88,10 @@ def draw_topic_compare(data):
     fig.update_yaxes(title_text='Topic count (normalized)')
     fig.update_layout(showlegend=True)
     return fig
+
 ################################################### MODULE CHOICE ###################################################
 if choice == 'Home':
-    st.title("SHAPING AI MEDIA DASHBOARD")
+    st.title("SHAPING AI DASHBOARD")
     st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
 elif choice == 'Data':
     st.title("Data")
