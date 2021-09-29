@@ -80,6 +80,14 @@ def draw_dist_topic(data):
     fig.update_yaxes(title_text='Topic count (normalized)')
     fig.update_layout(showlegend=False)
     return fig
+
+def draw_topic_compare(data):
+    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 800, height = 500)
+    fig.update_traces(mode='markers+lines')
+    fig.update_xaxes(title_text='Year')
+    fig.update_yaxes(title_text='Topic count (normalized)')
+    fig.update_layout(showlegend=False)
+    return fig
 ################################################### MODULE CHOICE ###################################################
 if choice == 'Home':
     st.title("SHAPING AI MEDIA DASHBOARD")
@@ -170,7 +178,8 @@ elif choice == 'Topics':
          col2.plotly_chart(draw_dist_topic(topics))
     st.subheader('Compare topics')
     option_3_s = st.multiselect('', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
-    st.plotly_chart(draw_dist_topic(topics))
+    topics = topics_data[(topics_data.topic == 0) | (topics_data.topic == 1)]
+    st.plotly_chart(draw_topic_compare(topics))
 elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
