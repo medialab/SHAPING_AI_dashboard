@@ -55,7 +55,7 @@ def load_media(min, max):
 def draw_media(data):
     fig = px.histogram(data, x='count', y='media', orientation='h', width = 500, height = 400)
     fig.update_xaxes(title_text='Count of articles published')
-    fig.update_yaxes(title_text='')
+    fig.update_layout(yaxis_title=None)
     fig.update_yaxes(autorange="reversed")
     fig.update_traces(xbins_size="M1")
     return fig
@@ -67,16 +67,8 @@ def draw_topics(index):
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
     fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 500, height = 400)
     fig.update_xaxes(title_text='Term frequency')
-    fig.update_yaxes(title_text='Topic Keywords')
+    fig.update_layout(yaxis_title=None)
     fig.update_yaxes(autorange="reversed")
-    return fig
-
-def draw_dist_topic(data):
-    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 500, height = 400)
-    fig.update_traces(mode='markers+lines')
-    fig.update_xaxes(title_text='Year')
-    fig.update_yaxes(title_text='Topic count (normalized)')
-    fig.update_layout(showlegend=False)
     return fig
 
 def draw_topic_compare(data):
