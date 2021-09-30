@@ -91,9 +91,9 @@ def draw_topic_compare(data):
 if choice == 'Home':
     st.title("SHAPING AI DASHBOARD")
     st.markdown('### About the project')
-    st.markworn("The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media.")
+    st.write("The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media.")
     st.markdown('### About this app')
-    st.markdown('This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.')
+    st.write('This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.')
 elif choice == 'Data':
     st.title("Data")
     st.markdown('### Europresse Database')
