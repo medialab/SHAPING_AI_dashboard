@@ -18,7 +18,7 @@ st.sidebar.image(image)
 st.sidebar.title('Navigate')
 choice = st.sidebar.radio("",('Home', 'Data', 'Analysis', 'Topics', 'Terms Network'))
 st.sidebar.title("About this app")
-st.sidebar.info("This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021. Feel free to collaborate and comment on the work. The Github link can be found "
+st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found"
                 "[here](https://github.com/yuliianikolaenko/shaping-ai-dashboard).")
 ################################################### DATA ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
@@ -93,6 +93,8 @@ def draw_topic_compare(data):
 if choice == 'Home':
     st.title("SHAPING AI DASHBOARD")
     st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
+    st.title("About this app")
+    st.markdown('This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.)
 elif choice == 'Data':
     st.title("Data")
     st.markdown('### Europresse Database')
