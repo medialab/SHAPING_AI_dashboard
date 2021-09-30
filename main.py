@@ -114,10 +114,9 @@ elif choice == 'Analysis':
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info("Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score. Topics labels were assigned according to the theme of the keywords that are representative of each topic. which are displayed below. Topics distribution over time was calculated using the relative count of the articles assigned to each topic. To classify a document as belonging to a particular topic, the highest contribution to that document was calculated.")
-    option_2_s = st.multiselect('Select topics you want to compare', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default= ['History'])
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
-    #option_2_s = col1.selectbox('Choose topic you want to analyse', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
+    option_2_s = col1.selectbox('Choose topic you want to analyse', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
     if option_2_s == 'History':
         col1.plotly_chart(draw_topics(0))
     elif option_2_s == 'Investments':
@@ -139,8 +138,8 @@ elif choice == 'Topics':
     elif option_2_s == 'Legality':
          col1.plotly_chart(draw_topics(9))
     col2.subheader('Topics distribution over time')
-    #option_3_s = col2.multiselect('Select topics you want to compare', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default= option_2_s)
-    col2.plotly_chart(draw_topic_compare(topics_data[topics_data.topic.isin(option_2_s)]))
+    option_3_s = col2.multiselect('Select topics you want to compare', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default= option_2_s)
+    col2.plotly_chart(draw_topic_compare(topics_data[topics_data.topic.isin(option_3_s)]))
 elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
