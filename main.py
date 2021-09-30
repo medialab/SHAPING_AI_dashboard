@@ -91,8 +91,7 @@ def draw_topic_compare(data):
 if choice == 'Home':
     st.title("SHAPING AI DASHBOARD")
     st.markdown('### About the project')
-    st.write("The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. 
-             "The project’s task aims at detecting criticism and promises around AI in the French media. More details could be found [here](https://medialab.sciencespo.fr/en/activities/shaping-ai/).")
+    st.write("The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. More details could be found [here](https://medialab.sciencespo.fr/en/activities/shaping-ai/).")
     st.markdown('### About this app')
     st.write('This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.')
 elif choice == 'Data':
@@ -105,7 +104,7 @@ elif choice == 'Data':
     st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 47572.')
 elif choice == 'Analysis':
     st.title('Analysis')
-    st.info('ADD HERE')
+    st.info('')
     min_ts = min(dist_articles_df['date']).to_pydatetime()
     max_ts = max(dist_articles_df['date']).to_pydatetime()
     min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts], help='Choose the time period you want to analyse'))
