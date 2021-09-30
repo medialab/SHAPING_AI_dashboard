@@ -80,7 +80,7 @@ def draw_dist_topic(data):
     return fig
 
 def draw_topic_compare(data):
-    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 500, height = 400)
+    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 600, height = 400)
     fig.update_traces(mode='markers+lines')
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Topic count (normalized)')
@@ -145,9 +145,7 @@ elif choice == 'Topics':
     elif option_2_s == 'Legality':
          col1.plotly_chart(draw_topics(9))
     col2.subheader('Topic distribution over time')
-    #col2.plotly_chart(draw_dist_topic(topics_data[topics_data['topic'] == option_2_s]))
-    #st.subheader('Compare')
-    option_3_s = col2.multiselect('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default= ['Research', 'Education', 'Enterprises', 'Legality'], help='Select the topics you want to compare')
+    option_3_s = col2.multiselect('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default= option_2_s, help='Select the topics you want to compare')
     col2.plotly_chart(draw_topic_compare(topics_data[topics_data.topic.isin(option_3_s)]))
 elif choice == 'Terms Network':
     st.title("Terms Network")
