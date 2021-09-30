@@ -43,6 +43,7 @@ def draw_bigram(data):
     fig.update_yaxes(title_text='')
     fig.update_xaxes(title_text='Count')
     fig.update_yaxes(autorange="reversed")
+    fig.update_layout(barmode='stack')
     return fig
 
 def load_media(min, max):
