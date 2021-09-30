@@ -53,7 +53,7 @@ def load_media(min, max):
     return data
 
 def draw_media(data):
-    fig = px.histogram(data, x='count', y='media', orientation='h', width = 500, height = 400)
+    fig = px.histogram(data, x='count', y='media', orientation='h', width = 600, height = 400)
     fig.update_xaxes(title_text='Count of articles published')
     fig.update_layout(yaxis_title=None)
     fig.update_yaxes(autorange="reversed")
@@ -65,7 +65,7 @@ def draw_topics(index):
     vocab_comp = zip(vocab, comp)
     sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:15]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
-    fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 500, height = 400)
+    fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 600, height = 400)
     fig.update_xaxes(title_text='Term frequency')
     fig.update_layout(yaxis_title=None)
     fig.update_yaxes(autorange="reversed")
