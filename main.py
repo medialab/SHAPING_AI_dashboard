@@ -39,7 +39,7 @@ def load_bigram(min, max):
     return data
 
 def draw_bigram(data):
-    fig = px.bar(data, x='count', y='bigram', orientation='h', width = 500, height = 400)
+    fig = px.bar(data, x='count', y='bigram', orientation='h', width = 600, height = 400)
     fig.update_yaxes(title_text='')
     fig.update_xaxes(title_text='Count')
     fig.update_yaxes(autorange="reversed")
