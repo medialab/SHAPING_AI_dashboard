@@ -32,18 +32,18 @@ def draw_dist(data):
     fig.update_traces(xbins_size="M1")
     return fig
 
-def draw_bigram(data):
-    fig = px.bar(data, x='count', y='bigram', orientation='h', color="date", width = 500, height = 400)
-    fig.update_yaxes(title_text='')
-    fig.update_xaxes(title_text='Count')
-    fig.update_yaxes(autorange="reversed")
-    return fig
-
 def load_bigram(min, max):
     df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['year'])
     df_bigram = df_bigram[(df_bigram["year"] >= min) & (df_bigram["year"] <= max)]
     data = df_bigram.sort_values(["count"], ascending=False)
     return data
+
+def draw_bigram(data):
+    fig = px.bar(data, x='count', y='bigram', orientation='h', color="year", width = 500, height = 400)
+    fig.update_yaxes(title_text='')
+    fig.update_xaxes(title_text='Count')
+    fig.update_yaxes(autorange="reversed")
+    return fig
 
 def load_media(min, max):
     df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['date'])
