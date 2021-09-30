@@ -13,13 +13,12 @@ st.set_page_config(
     page_icon=None,
 )
 ################################################### SIDEBAR ###################################################
-st.sidebar.markdown("# SHAPING AI")
+st.sidebar.markdown("## SHAPING AI")
 st.sidebar.title('Navigate')
 choice = st.sidebar.radio("",('Home', 'Data', 'Analysis', 'Topics', 'Terms Network'))
 st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found [here](https://github.com/yuliianikolaenko/shaping-ai-dashboard).")
-col1, col2, col3 = st.sidebar.columns(3)
 image = Image.open('images/logo_medialab.png')
-col1.sidebar.image(image)
+st.sidebar.image(image)
 #image2 = Image.open('images/logo_medialab.png')
 #col2.sidebar.image(image2)
 #image3 = Image.open('images/logo_medialab.png')
