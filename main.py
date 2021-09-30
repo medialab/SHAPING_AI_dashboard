@@ -104,12 +104,12 @@ elif choice == 'Data':
     st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 47572.')
 elif choice == 'Analysis':
     st.title('Analysis')
-    st.info('')
+    st.info('These visualizations represent the statistical analysis of the text:  count of published articles between 2011 and 2021, the frequency distribution of most used pair of words (bigrams), and rating of the most active media according to the number of articles they published over the all period.Each visualization element displays data for a time period, which you can select below.')
     min_ts = min(dist_articles_df['date']).to_pydatetime()
     max_ts = max(dist_articles_df['date']).to_pydatetime()
-    min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts], help='Choose the time period you want to analyse'))
+    min_selection, max_selection = pd.to_datetime(st.slider("Time period", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts], help='Choose the time period you want to analyse'))
     dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
-    st.subheader('Display articles distribution over time')
+    st.subheader('Articles distribution over time')
     st.plotly_chart(draw_dist(dist_articles_df))
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
