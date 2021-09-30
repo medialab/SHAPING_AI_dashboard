@@ -15,7 +15,7 @@ st.set_page_config(
 ################################################### SIDEBAR ###################################################
 image = Image.open('images/logo_medialab.png')
 st.sidebar.image(image)
-st.sidebar.title("SHAPING AI")
+st.sidebar.title("SHAPING AI DASHBOARD")
 st.sidebar.header('Navigate')
 choice = st.sidebar.radio("",('Home', 'Data', 'Analysis', 'Topics', 'Terms Network'))
 st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found [here](https://github.com/yuliianikolaenko/shaping-ai-dashboard).")
@@ -83,10 +83,9 @@ def draw_topic_compare(data):
 
 ################################################### MODULE CHOICE ###################################################
 if choice == 'Home':
-    st.title("SHAPING AI DASHBOARD")
-    st.markdown('### About the project')
+    st.title('About the project')
     st.write("The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. More details could be found [here](https://medialab.sciencespo.fr/en/activities/shaping-ai/).")
-    st.markdown('### About this app')
+    st.header('About this app')
     st.write('This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.')
 elif choice == 'Data':
     st.title("Data")
