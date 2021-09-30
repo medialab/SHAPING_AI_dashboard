@@ -80,7 +80,7 @@ def draw_dist_topic(data):
     return fig
 
 def draw_topic_compare(data):
-    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 800, height = 500)
+    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 500, height = 400)
     fig.update_traces(mode='markers+lines')
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Topic count (normalized)')
@@ -121,10 +121,9 @@ elif choice == 'Analysis':
 elif choice == 'Topics':
     st.title("Topic Modeling")
     st.info("Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score. Topics labels were assigned according to the theme of the keywords that are representative of each topic. which are displayed below. Topics distribution over time was calculated using the relative count of the articles assigned to each topic. To classify a document as belonging to a particular topic, the highest contribution to that document was calculated.")
-    st.subheader('Overview')
     col1, col2 = st.columns(2)
-    option_2_s = col1.selectbox('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], help='Choose the topic you want to analyse')
     col1.subheader('Topic keywords')
+    option_2_s = col1.selectbox('Topic', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], help='Choose the topic you want to analyse')
     if option_2_s == 'History':
         col1.plotly_chart(draw_topics(0))
     elif option_2_s == 'Investments':
