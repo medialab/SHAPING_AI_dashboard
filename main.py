@@ -13,11 +13,17 @@ st.set_page_config(
     page_icon=None,
 )
 ################################################### SIDEBAR ###################################################
-image = Image.open('images/logo_medialab.png')
-st.sidebar.image(image)
+st.sidebar.markdown("# SHAPING AI")
 st.sidebar.title('Navigate')
 choice = st.sidebar.radio("",('Home', 'Data', 'Analysis', 'Topics', 'Terms Network'))
 st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found [here](https://github.com/yuliianikolaenko/shaping-ai-dashboard).")
+col1, col2, col3 = st.sidebar.columns(3)
+image = Image.open('images/logo_medialab.png')
+col1.sidebar.image(image)
+#image2 = Image.open('images/logo_medialab.png')
+#col2.sidebar.image(image2)
+#image3 = Image.open('images/logo_medialab.png')
+#col3.sidebar.image(image3)
 ################################################### DATA ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
 #dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
