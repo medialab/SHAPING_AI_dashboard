@@ -33,7 +33,7 @@ def draw_dist(data):
     return fig
 
 def draw_bigram(data):
-    fig = px.bar(data, x='count', y='bigram', orientation='h', color="year", width = 500, height = 400)
+    fig = px.bar(data, x='count', y='bigram', orientation='h', color="date", width = 500, height = 400)
     fig.update_yaxes(title_text='')
     fig.update_xaxes(title_text='Count')
     fig.update_yaxes(autorange="reversed")
