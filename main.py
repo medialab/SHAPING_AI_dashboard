@@ -15,11 +15,9 @@ st.set_page_config(
 ################################################### SIDEBAR ###################################################
 image = Image.open('images/logo_medialab.png')
 st.sidebar.image(image)
-st.sidebar.title('Navigate')
+st.sidebar.header('Navigate')
 choice = st.sidebar.radio("",('Home', 'Data', 'Analysis', 'Topics', 'Terms Network'))
-st.sidebar.title("About this app")
-st.sidebar.info("This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021. Feel free to collaborate and comment on the work. The Github link can be found "
-                "[here](https://github.com/yuliianikolaenko/shaping-ai-dashboard).")
+st.sidebar.info("Feel free to collaborate and comment on the work. The Github link can be found [here](https://github.com/yuliianikolaenko/shaping-ai-dashboard).")
 ################################################### DATA ###################################################
 dist_articles_df = pd.read_csv('data/dist_articles.csv', parse_dates=['date'])
 #dist_bigram_df = pd.read_csv('data/dist_bigram.csv')
@@ -34,18 +32,18 @@ def draw_dist(data):
     fig.update_traces(xbins_size="M1")
     return fig
 
-def draw_bigram(data):
-    fig = px.bar(data, x='count', y='bigram', orientation='h', width = 500, height = 400)
-    fig.update_yaxes(title_text='')
-    fig.update_xaxes(title_text='Count')
-    fig.update_yaxes(autorange="reversed")
-    return fig
-
 def load_bigram(min, max):
     df_bigram = pd.read_csv('data/df_bigrams.csv', parse_dates=['year'])
     df_bigram = df_bigram[(df_bigram["year"] >= min) & (df_bigram["year"] <= max)]
     data = df_bigram.sort_values(["count"], ascending=False)
     return data
+
+def draw_bigram(data):
+    fig = px.bar(data, x='count', y='bigram', orientation='h', width = 600, height = 400)
+    fig.update_yaxes(title_text='')
+    fig.update_xaxes(title_text='Count')
+    fig.update_yaxes(autorange="reversed")
+    return fig
 
 def load_media(min, max):
     df_journals = pd.read_csv('data/df_journals.csv', parse_dates=['date'])
@@ -55,9 +53,9 @@ def load_media(min, max):
     return data
 
 def draw_media(data):
-    fig = px.histogram(data, x='count', y='media', orientation='h', width = 500, height = 400)
+    fig = px.histogram(data, x='count', y='media', orientation='h', width = 600, height = 400)
     fig.update_xaxes(title_text='Count of articles published')
-    fig.update_yaxes(title_text='')
+    fig.update_layout(yaxis_title=None)
     fig.update_yaxes(autorange="reversed")
     fig.update_traces(xbins_size="M1")
     return fig
@@ -67,22 +65,14 @@ def draw_topics(index):
     vocab_comp = zip(vocab, comp)
     sorted_words = sorted(vocab_comp, key=lambda x: x[1], reverse=True)[:15]
     df = pd.DataFrame(sorted_words, columns=['words', 'weight'])
-    fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 500, height = 400)
+    fig = px.histogram(df, x='weight', y='words', template='plotly_white', width = 600, height = 400)
     fig.update_xaxes(title_text='Term frequency')
-    fig.update_yaxes(title_text='Topic Keywords')
+    fig.update_layout(yaxis_title=None)
     fig.update_yaxes(autorange="reversed")
     return fig
 
-def draw_dist_topic(data):
-    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 500, height = 400)
-    fig.update_traces(mode='markers+lines')
-    fig.update_xaxes(title_text='Year')
-    fig.update_yaxes(title_text='Topic count (normalized)')
-    fig.update_layout(showlegend=False)
-    return fig
-
 def draw_topic_compare(data):
-    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 800, height = 500)
+    fig = px.line(data, x="year", y="norm", color='topic', range_x=['2010', '2021'], width = 600, height = 400)
     fig.update_traces(mode='markers+lines')
     fig.update_xaxes(title_text='Year')
     fig.update_yaxes(title_text='Topic count (normalized)')
@@ -92,7 +82,10 @@ def draw_topic_compare(data):
 ################################################### MODULE CHOICE ###################################################
 if choice == 'Home':
     st.title("SHAPING AI DASHBOARD")
-    st.info("""The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. """)
+    st.header('About the project')
+    st.write("The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. More details could be found [here](https://medialab.sciencespo.fr/en/activities/shaping-ai/).")
+    st.header('About this app')
+    st.write('This dashboard was developed during my research internship at médialab Sciences Po and presents the exploratory analysis of the French media discourse around AI from 2011 to 2021. Feel free to [contact](https://www.linkedin.com/in/yuliia-nikolaenko/) the author for any questions or collaboration. ')
 elif choice == 'Data':
     st.title("Data")
     st.markdown('### Europresse Database')
@@ -103,12 +96,12 @@ elif choice == 'Data':
     st.markdown('Data wrangling included removal of missing values, duplicates, text pre-processing: unicode, lower casing, links, special characters, punctuation, stopwords removal. The total number of articles in the final corpus is 47572.')
 elif choice == 'Analysis':
     st.title('Analysis')
-    st.info('ADD HERE')
+    st.info('These visualizations represent the statistical analysis of the text:  count of published articles between 2011 and 2021, the frequency distribution of most used pair of words (bigrams), and rating of the most active media according to the number of articles they published over the all period.Each visualization element displays data for a time period which you can select below.')
     min_ts = min(dist_articles_df['date']).to_pydatetime()
     max_ts = max(dist_articles_df['date']).to_pydatetime()
-    min_selection, max_selection = pd.to_datetime(st.slider("", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts], help='Choose the time period you want to analyse'))
+    min_selection, max_selection = pd.to_datetime(st.slider("Choose time period you want to analyse", min_value=min_ts, max_value=max_ts, value=[min_ts, max_ts]))
     dist_articles_df = dist_articles_df[(dist_articles_df["date"] >= min_selection) & (dist_articles_df["date"] <= max_selection)]
-    st.subheader('Display articles distribution over time')
+    st.subheader('Articles distribution over time')
     st.plotly_chart(draw_dist(dist_articles_df))
     col1, col2 = st.columns(2)
     col1.subheader('Most frequent words')
@@ -119,11 +112,10 @@ elif choice == 'Analysis':
     col2.plotly_chart(draw_media(data))
 elif choice == 'Topics':
     st.title("Topic Modeling")
-    st.info('Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score.')
-    st.subheader('Overview')
-    option_2_s = st.selectbox('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], help='Choose the topic you want to analyse')
+    st.info("Topics were extracted from the text corpus using the Latent Dirichlet Allocation (LDA) model with Scikit-learn open-source Python machine learning library. The number of topics was selected manually through the comparison and selection of the highest Topic Coherence score. Topics labels were assigned according to the theme of the keywords that are representative of each topic. which are displayed below. Topics distribution over time was calculated using the relative count of the articles assigned to each topic. To classify a document as belonging to a particular topic, the highest contribution to that document was calculated.")
     col1, col2 = st.columns(2)
     col1.subheader('Topic keywords')
+    option_2_s = col1.selectbox('Choose topic you want to analyse', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'])
     if option_2_s == 'History':
         col1.plotly_chart(draw_topics(0))
     elif option_2_s == 'Investments':
@@ -144,15 +136,16 @@ elif choice == 'Topics':
          col1.plotly_chart(draw_topics(8))
     elif option_2_s == 'Legality':
          col1.plotly_chart(draw_topics(9))
-    col2.subheader('Topic distribution over time')
-    col2.plotly_chart(draw_dist_topic(topics_data[topics_data['topic'] == option_2_s]))
-    st.subheader('Comparison')
-    option_3_s = st.multiselect('Topics', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default= option_2_s, help='Select the topics to compare')
-    st.plotly_chart(draw_topic_compare(topics_data[topics_data.topic.isin(option_3_s)]))
+    col2.subheader('Topics distribution over time')
+    option_3_s = col2.multiselect('Select topics you want to compare', ['History', 'Investments', 'Healthcare', 'Robotics', 'Companies', 'Market&Clients', 'Research', 'Education', 'Enterprises', 'Legality'], default= option_2_s)
+    col2.plotly_chart(draw_topic_compare(topics_data[topics_data.topic.isin(option_3_s)]))
 elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
-        """The network represents the links (co-occurrence in the text) between the terms extracted from all corpora. The node's colors are allocated by the Louvain Method of community detection.""")
+        """The network represents the links (co-occurrence in the text) between the terms extracted from all corpora. The node's colors are allocated by the Louvain Method of community detection. The distance between clusters in the network represents how these topics are interconnected in a text corpus. The fewer common links between terms in different clusters, the further apart these topics will be in the network.""")
+    #my_expander = st.expander(label='Show network clusters legend')
+    #with my_expander:
+        #'Hello there!'
     components.iframe(
         'https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2Fnetwork%2FSHAPING-AI-NETWORK-BUNDLE.json&color=cluster_label&lockNavigation=true&name=&ratio=1.3436928&showLink=true&size=weight&x=0.5308020842190102&y=0.3783239544591892',
         width=800, height=500)
