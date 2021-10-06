@@ -85,7 +85,7 @@ if choice == 'Home':
     st.header('About the project')
     st.write("The international project 'Shaping 21st Century AI. Controversies and Closure in Media, Policy, and Research' investigate the development of Artificial Intelligence (AI) as a socio-technical phenomenon. The project’s task aims at detecting criticism and promises around AI in the French media. More details could be found [here](https://medialab.sciencespo.fr/en/activities/shaping-ai/).")
     st.header('About this app')
-    st.write('This dashboard presents the exploratory analysis of the French media discourse around AI from 2011 to 2021.')
+    st.write('This dashboard was developed during my research internship at médialab Sciences Po and presents the exploratory analysis of the French media discourse around AI from 2011 to 2021. Feel free to [contact](https://www.linkedin.com/in/yuliia-nikolaenko/) the author for any questions or collaboration. ')
 elif choice == 'Data':
     st.title("Data")
     st.markdown('### Europresse Database')
@@ -143,9 +143,9 @@ elif choice == 'Terms Network':
     st.title("Terms Network")
     st.info(
         """The network represents the links (co-occurrence in the text) between the terms extracted from all corpora. The node's colors are allocated by the Louvain Method of community detection. The distance between clusters in the network represents how these topics are interconnected in a text corpus. The fewer common links between terms in different clusters, the further apart these topics will be in the network.""")
-    my_expander = st.expander(label='Show networks clusters legend')
-    with my_expander:
-        'Hello there!'
+    #my_expander = st.expander(label='Show network clusters legend')
+    #with my_expander:
+        #'Hello there!'
     components.iframe(
         'https://medialab.github.io/minivan/#/embeded-network?bundle=https:%2F%2Fraw.githubusercontent.com%2Fyuliianikolaenko%2Fshaping-ai-dashboard%2Fmain%2Fnetwork%2FSHAPING-AI-NETWORK-BUNDLE.json&color=cluster_label&lockNavigation=true&name=&ratio=1.3436928&showLink=true&size=weight&x=0.5308020842190102&y=0.3783239544591892',
         width=800, height=500)
